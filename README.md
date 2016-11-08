@@ -1,2 +1,2 @@
-# Mogu: a Collection of Simple Numerical Package
+# Mogu: a Collection of Simple Numerical Routines
 
