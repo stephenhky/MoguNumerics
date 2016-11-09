@@ -1,34 +1,13 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Aug  8 14:40:31 2013
-
-@author: hok1
-"""
-
 import math
 
-def derivative(fcn, x, dx=None, tol=1e-8):
-    if dx == None:
-        tdx = min(0.1, abs(0.1 * x)) if x != 0. else 0.1
-        df_old = derivative(fcn, x, dx=tdx)
-        df_new = derivative(fcn, x, dx=tdx * 0.1)
-        while abs(df_old - df_new) > tol:
-            df_old = df_new
-            tdx *= 0.1
-            df_new = derivative(fcn, x, dx=tdx)
-        return df_new
-    else:
-        return (fcn(x + dx) - fcn(x - dx)) / (2 * dx)
+import numpy as np
 
+import util.derivatives.numerical_gradients as ng
 
-def gradient2d(fcn, x, y, tol=1e-7):
-    dfx = derivative(lambda xp: fcn(xp, y), x, tol=tol)
-    dfy = derivative(lambda yp: fcn(x, yp), y, tol=tol)
-    return dfx, dfy
 
 def sigmoid_prob(x, A, B):
     return 1./(1+math.exp(A*x+B))
-    
+
 def label(f, threshold=0.):
     if f == threshold:
         return 0
@@ -60,13 +39,14 @@ def gradient_search_min_entropy_error_fcn(scores, tol=1e-1, sigma=0.1):
     curr_fcn_val = entropy_error_fcn(scores, A, B)
     converged = False
     while not converged:
-        dfA, dfB = gradient2d(lambda A, B: entropy_error_fcn(scores, A, B),
-                              A, B, tol=tol)
+        dfA, dfB = ng.tensor_gradient_element(lambda X: entropy_error_fcn(scores, X[0], X[1]),
+                                              np.array([A, B]),
+                                              tol=tol)
         new_fcn_val = entropy_error_fcn(scores, A-sigma*dfA, B-sigma*dfB)
         if abs(new_fcn_val-curr_fcn_val) < tol:
             converged=True
         curr_fcn_val = new_fcn_val
         A = A-sigma*dfA
         B = B-sigma*dfB
-        #print A, B, curr_fcn_val
+
     return A, B
