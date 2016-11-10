@@ -19,7 +19,7 @@ setup(name='mogu',
       author="Kwan-Yuet Ho",
       author_email="stephenhky@yahoo.com.hk",
       license='MIT',
-      packages=['mogu',],
+      packages=['mogu', 'mogu.embed', 'mogu.fit', 'mogu.util', 'mogu.util/derivatives'],
       install_requires=[
           'numpy', 'scipy', 'theano',
       ],
