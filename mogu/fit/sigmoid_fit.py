@@ -39,9 +39,9 @@ def gradient_search_min_entropy_error_fcn(scores, tol=1e-1, sigma=0.1):
     curr_fcn_val = entropy_error_fcn(scores, A, B)
     converged = False
     while not converged:
-        dfA, dfB = ng.tensor_gradient_element(lambda X: entropy_error_fcn(scores, X[0], X[1]),
-                                              np.array([A, B]),
-                                              tol=tol)
+        dfA, dfB = ng.tensor_gradient(lambda X: entropy_error_fcn(scores, X[0], X[1]),
+                                      np.array([A, B]),
+                                      tol=tol)
         new_fcn_val = entropy_error_fcn(scores, A-sigma*dfA, B-sigma*dfB)
         if abs(new_fcn_val-curr_fcn_val) < tol:
             converged=True
