@@ -5,7 +5,7 @@ def readme():
         return f.read()
 
 setup(name='mogu',
-      version="0.0",
+      version="0.1.0",
       description="Collection of Simple Numerical Routines",
       long_description="Collection of simple numerical routines, independent of each other",
       classifiers=[
@@ -28,5 +28,6 @@ setup(name='mogu',
       install_requires=[
           'numpy', 'scipy', 'theano', 'networkx',
       ],
+      scripts=['bin/DictConcatenator'],
       include_package_data=True,
       zip_safe=False)
