@@ -2,7 +2,7 @@ import math
 
 import numpy as np
 
-import util.derivatives.numerical_gradients as ng
+from ..util.derivatives import numerical_gradients as ng
 
 
 def sigmoid_prob(x, A, B):

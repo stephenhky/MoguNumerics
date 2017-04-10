@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 # concatenate pickles of Python dicts
 
 import pickle

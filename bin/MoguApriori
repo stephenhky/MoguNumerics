@@ -1,0 +1,28 @@
+#!/usr/bin/python
+
+import argparse
+
+def getArgParser():
+    parser = argparse.ArgumentParser(description='Get association rules from transaction using apriori algorthm.')
+    parser.add_argument('filename',
+                        help='the name of the file containing all transactions')
+    parser.add_argument('--minSupport', type=float, default=0.15,
+                        help='minimum support (default=0.15)')
+    parser.add_argument('--minConfidence', type=float, default=0.6,
+                        help='minimum confidence level (default=0.6)')
+    return parser
+
+argparser = getArgParser()
+args = argparser.parse_args()
+
+from mogu.assrule import AprioriAssociationRule
+
+if __name__ == '__main__':
+    alg = AprioriAssociationRule(args.filename)
+    alg.runApriori(minSupport=args.minSupport, minConfidence=args.minConfidence)
+    print 'Support Items:'
+    for key in alg.toRetItems:
+        print tuple(key), ' : ', alg.toRetItems[key]
+    print 'Rules:'
+    for elem1, elem2, confidence in alg.associationRules:
+        print tuple(elem1), '-->', tuple(elem2), ':', confidence

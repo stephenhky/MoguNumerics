@@ -2,7 +2,7 @@ import numpy as np
 import theano
 import theano.tensor as T
 
-import util.derivatives.numerical_gradients as ng
+from ..util.derivatives import numerical_gradients as ng
 
 # define variables
 mf = T.dscalar('mf')         # magic factor / learning rate
