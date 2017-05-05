@@ -5,7 +5,7 @@ def readme():
         return f.read()
 
 setup(name='mogu',
-      version="0.1.1",
+      version="0.1.2",
       description="Collection of Simple Numerical Routines",
       long_description="Collection of simple numerical routines, independent of each other",
       classifiers=[
@@ -25,7 +25,8 @@ setup(name='mogu',
                 'mogu.util',
                 'mogu.util.derivatives',
                 'mogu.simvoltage',
-                'mogu.assrule'],
+                'mogu.assrule',
+                'mogu.voterank'],
       install_requires=[
           'numpy', 'scipy', 'theano', 'networkx',
       ],
