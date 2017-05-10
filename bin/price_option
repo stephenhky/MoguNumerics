@@ -1,0 +1,40 @@
+#!/usr/bin/python
+
+# argument parsing
+import argparse
+from mogu.finance.binomial.BinomialTree import EuropeanCallBinomialTree, EuropeanPutBinomialTree, AmericanCallBinomialTree, AmericanPutBinomialTree
+
+optiondict = {'eurocall': EuropeanCallBinomialTree,
+              'europut': EuropeanPutBinomialTree,
+              'amcall': AmericanCallBinomialTree,
+              'amput': AmericanPutBinomialTree}
+
+def get_argparser():
+    parser = argparse.ArgumentParser(description='Compute price for various options.')
+    parser.add_argument('type', help='type of option (eurocall: European call option, europut: European put option, amcall: American call option; amput: American put option)')
+    parser.add_argument('S0', type=float, help='initial stock price')
+    parser.add_argument('X', type=float, help='strike price')
+    parser.add_argument('r', type=float, help='interest rate (per time unit)')
+    parser.add_argument('sigma', type=float, help='volatility (per time unit)')
+    parser.add_argument('T', type=float, help='maturaity time (time unit)')
+    parser.add_argument('--nbsteps', type=int, default=100, help='number of time steps')
+    return parser
+
+def main(args):
+    pricer = optiondict[args.type.lower()](args.S0, args.X, args.r, args.sigma, args.T, args.nbsteps)
+    print 'initial stock price = ', args.S0
+    print 'strike price = ', args.X
+    print 'interest rate (per time unit) = ', args.r
+    print 'volatility (per time unit) = ', args.sigma
+    print 'maturity time (time unit) = ', args.T
+    print 'number of discrete time steps = ', args.nbsteps
+    print 'type of option: ', args.type, '; price = ', pricer.getPrice()
+
+if __name__ == '__main__':
+    parser = get_argparser()
+    args = parser.parse_args()
+
+    if args.type.lower() in optiondict.keys():
+        main(args)
+    else:
+        raise ValueError(args.type+' is not a valid option.')
