@@ -3,7 +3,7 @@
 import argparse
 
 def getArgParser():
-    parser = argparse.ArgumentParser(description='Get association rules from transaction using apriori algorthm.')
+    parser = argparse.ArgumentParser(description='Mine association rules from transaction using apriori algorthm.')
     parser.add_argument('filename',
                         help='the name of the file containing all transactions')
     parser.add_argument('--minSupport', type=float, default=0.15,

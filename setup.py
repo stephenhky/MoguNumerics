@@ -32,6 +32,6 @@ setup(name='mogu',
       install_requires=[
           'numpy', 'scipy', 'theano', 'networkx',
       ],
-      scripts=['bin/DictConcatenator', 'bin/MoguApriori'],
+      scripts=['bin/concatenate_dict', 'bin/mogu_minerule', 'bin/price_option'],
       include_package_data=True,
       zip_safe=False)
