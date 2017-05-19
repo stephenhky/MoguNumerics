@@ -17,7 +17,7 @@ def get_argparser():
     parser.add_argument('r', type=float, help='interest rate (per time unit)')
     parser.add_argument('sigma', type=float, help='volatility (per time unit)')
     parser.add_argument('T', type=float, help='maturaity time (time unit)')
-    parser.add_argument('--nbsteps', type=int, default=100, help='number of time steps')
+    parser.add_argument('--nbsteps', type=int, default=100, help='number of time steps (default: 100)')
     return parser
 
 def main(args):
