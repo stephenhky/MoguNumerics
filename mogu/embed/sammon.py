@@ -36,7 +36,8 @@ s = T.sum(s_term)
 E = s / c
 
 # function compilation and optimization
-Efcn = theano.function([Xmatrix, Ymatrix], E)
+# Efcn = theano.function([Xmatrix, Ymatrix], E)
+# compile after calling the function outside. avoid slow loading
 
 # training
 def sammon_embedding(Xmat, initYmat, alpha=0.3, tol=1e-8, maxsteps=500, return_updates=False):
@@ -44,6 +45,8 @@ def sammon_embedding(Xmat, initYmat, alpha=0.3, tol=1e-8, maxsteps=500, return_u
     NY, td = initYmat.shape
     if N != NY:
         raise ValueError('Number of vectors in Ymat ('+str(NY)+') is not the same as Xmat ('+str(N)+')!')
+
+    Efcn = theano.function([Xmatrix, Ymatrix], E)
 
     # iteration
     Efcn_X = lambda Ymat: Efcn(Xmat, Ymat)
