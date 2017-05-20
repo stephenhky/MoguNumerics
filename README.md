@@ -4,6 +4,15 @@ This is a numerical packages collecting various routines of numerical algorithms
 
 I tried to make each file to be independent of each other. If there are functions that are universally used, they will be put into the package `mogu.util`. However, I try my best to keep the number of these functions as few as possible.
 
+# Functionalities
+
+* Association rule using Apriori algorithm;
+* Embedding: Sammon algorithm;
+* Binomial tree algorithm for European and American options pricing;
+* Exponential and sigmoid curve fitting;
+* Simulated voltage for networks;
+* Voter rank: Wilson's score.
+
 # News
 
 * 05/10/2017: `mogu` 0.1.2 released.
