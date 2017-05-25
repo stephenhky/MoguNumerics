@@ -1,76 +1,56 @@
-import numpy as np
-import theano
-import theano.tensor as T
 
-from ..util.derivatives import numerical_gradients as ng
+import tensorflow as tf
 
-# define variables
-mf = T.dscalar('mf')         # magic factor / learning rate
+def sammon_embedding(Xmat, initYmat, tol=1e-8, alpha=0.3, nbsteps=1000):
+    N = Xmat.shape[0]
+    # d = Xmat.shape[1]
 
-# coordinate variables
-Xmatrix = T.dmatrix('Xmatrix')
-Ymatrix = T.dmatrix('Ymatrix')
+    # distance matrix for X
+    X = tf.placeholder('float')
+    sqX = tf.reduce_sum(X * X, 1)
+    sqX = tf.reshape(sqX, [-1, 1])
+    sqDX = sqX - 2 * tf.matmul(X, tf.transpose(X)) + tf.transpose(sqX)
+    sqDXarray = tf.stack([sqDX[i, j] for i in range(N) for j in range(i + 1, N)])
+    DXarray = tf.sqrt(sqDXarray)
 
-# number of points and dimensions (user specify them)
-N, d = Xmatrix.shape
-_, td = Ymatrix.shape
+    # distance matrix for Y
+    Y = tf.Variable(initYmat, dtype='float')
+    sqY = tf.reduce_sum(Y * Y, 1)
+    sqY = tf.reshape(sqY, [-1, 1])
+    sqDY = sqY - 2 * tf.matmul(Y, tf.transpose(Y)) + tf.transpose(sqY)
+    sqDYarray = tf.stack([sqDY[i, j] for i in range(N) for j in range(i + 1, N)])
+    DYarray = tf.sqrt(sqDYarray)
 
-# grid indices
-n_grid = T.mgrid[0:N, 0:N]
-ni = n_grid[0].flatten()
-nj = n_grid[1].flatten()
+    # cost function
+    Z = tf.reduce_sum(DXarray) * 0.5
+    numerator = tf.reduce_sum(tf.divide(tf.square(DXarray - DYarray), DXarray)) * 0.5
+    cost = tf.divide(numerator, Z)
 
-# cost function
-c_terms, _ = theano.scan(lambda i, j: T.switch(T.lt(i, j),
-                                               T.sqrt(T.sum(T.sqr(Xmatrix[i]-Xmatrix[j]))),
-                                               0),
-                         sequences=[ni, nj])
-c = T.sum(c_terms)
+    # optimizer (note: do not use Adam, which can lead to overflow)
+    train = tf.train.AdagradOptimizer(alpha).minimize(cost)
+    init = tf.global_variables_initializer()
 
-s_term, _ = theano.scan(lambda i, j: T.switch(T.lt(i, j),
-                                              T.sqr(T.sqrt(T.sum(T.sqr(Xmatrix[i]-Xmatrix[j])))-T.sqrt(T.sum(T.sqr(Ymatrix[i]-Ymatrix[j]))))/T.sqrt(T.sum(T.sqr(Xmatrix[i]-Xmatrix[j]))),
-                                              0),
-                        sequences=[ni, nj])
-s = T.sum(s_term)
+    # Tensorflow session
+    sess = tf.Session()
+    sess.run(init)
 
-E = s / c
-
-# function compilation and optimization
-# Efcn = theano.function([Xmatrix, Ymatrix], E)
-# compile after calling the function outside. avoid slow loading
-
-# training
-def sammon_embedding(Xmat, initYmat, alpha=0.3, tol=1e-8, maxsteps=500, return_updates=False):
-    N, d = Xmat.shape
-    NY, td = initYmat.shape
-    if N != NY:
-        raise ValueError('Number of vectors in Ymat ('+str(NY)+') is not the same as Xmat ('+str(N)+')!')
-
-    Efcn = theano.function([Xmatrix, Ymatrix], E)
-
-    # iteration
-    Efcn_X = lambda Ymat: Efcn(Xmat, Ymat)
-    step = 0
-    oldYmat = initYmat
-    oldE = Efcn_X(initYmat)
-    update_info = {'Ymat': [initYmat], 'cost': [oldE]}
+    # training
+    c = sess.run(cost, feed_dict={X: Xmat})
+    print "initial cost = ", c
     converged = False
-    while (not converged) and step<=maxsteps:
-        newYmat = oldYmat - alpha*ng.tensor_gradient(Efcn_X, oldYmat, tol=tol)/ng.tensor_divgrad(Efcn_X, oldYmat, tol=tol)
-        newE = Efcn_X(newYmat)
-        if np.all(np.abs(newE-oldE)<tol):
-            converged = True
-        oldYmat = newYmat
-        oldE = newE
-        step += 1
-        if return_updates:
-            print 'Step ', step, '\tCost = ', oldE
-            update_info['Ymat'].append(oldYmat)
-            update_info['cost'].append(oldE)
+    i = 0
+    while (not converged) and (i < nbsteps):
+        sess.run(train, feed_dict={X: Xmat})
+        newc = sess.run(cost, feed_dict={X: Xmat})
+        print "epoch: ", i, " cost = ", newc
+        converged = (abs(newc-c)<tol)
+        i += 1
+        c = newc
 
-    # return results
-    if return_updates:
-        update_info['num_steps'] = step
-        return oldYmat, update_info
-    else:
-        return oldYmat
+    # result retrieval
+    calculated_Y = sess.run(Y, feed_dict={X: Xmat})
+
+    # close session
+    sess.close()
+
+    return calculated_Y

@@ -30,7 +30,7 @@ setup(name='mogu',
                 'mogu.finance',
                 'mogu.finance.binomial'],
       install_requires=[
-          'numpy', 'scipy', 'theano', 'networkx',
+          'numpy', 'scipy', 'tensorflow', 'networkx',
       ],
       scripts=['bin/concatenate_dict', 'bin/mogu_minerule', 'bin/price_option'],
       include_package_data=True,

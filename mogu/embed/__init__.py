@@ -1,1 +1,1 @@
-from .sammon import *
+from .sammon import sammon_embedding
