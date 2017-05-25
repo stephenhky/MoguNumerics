@@ -12,7 +12,8 @@ I tried to make each file to be independent of each other. If there are function
 they will be put into the package `mogu.util`. However, I try my best to keep the number of these functions
 as few as possible.
 
-# Functionalities
+Functionalities
+---------------
 
 * Association rule using Apriori algorithm;
 * Embedding: Sammon algorithm;
