@@ -1,0 +1,38 @@
+#!/usr/bin/env python
+
+import argparse
+
+def get_argparser():
+    parser = argparse.ArgumentParser(description='Sammon embedding')
+    parser.add_argument('input_filename', help='input file for embedding')
+    parser.add_argument('output_filename', help='output file')
+    parser.add_argument('--plot_filename', default='', help='plot output file (default: "")')
+    parser.add_argument('--d', type=int, default=2, help='embedded dimensions (default: 2)')
+    parser.add_argument('--tol', type=float, default=1e-8, help='tolerance for convergence (default: 1e-8)')
+    parser.add_argument('--alpha', type=float, default=0.3, help='parameter for Adagrad optimizer (default: 0.3)')
+    parser.add_argument('--nbsteps', type=int, default=1000, help='maximum iterations (default: 1000)')
+    return parser
+
+parser = get_argparser()
+args = parser.parse_args()
+
+import numpy as np
+from mogu.embed import sammon_embedding
+
+if __name__ == '__main__':
+    Xmat = np.loadtxt(args.input_filename, skiprows=1)
+
+    N, d = Xmat.shape
+    if d < args.d:
+        raise ValueError('Embedded dimension larger than original dimension!')
+    init_points = Xmat[:, :args.d]
+
+    embed_pts = sammon_embedding(Xmat, init_points, tol=args.tol, alpha=args.alpha, nbsteps=args.nbsteps)
+
+    np.savetxt(args.output_filename, embed_pts)
+
+    if len(args.plot_filename)>0:
+        import matplotlib.pyplot as plt
+        x, y = embed_pts.transpose()
+        plt.plot(x, y, 'x')
+        plt.savefig(args.plot_filename)

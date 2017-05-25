@@ -1,7 +1,11 @@
-import embed
-import fit
-import simvoltage
+
 import util
-import finance
+
 import assrule
+import embed
+import finance
+import fit
+import netflow
 import voterank
+
+from .netflow import simvoltage
