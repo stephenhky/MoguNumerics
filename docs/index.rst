@@ -22,11 +22,10 @@ as few as possible.
 * Voter rank: Wilson's score.
 
 Github: Github_
+
 PyPI: PyPI_
 
-To install: type on command prompt:
-
-`pip install -U mogu`
+To install: type on command prompt: `pip install -U mogu`
 
 Contents:
 
