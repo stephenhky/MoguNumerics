@@ -2,7 +2,9 @@
 
 import numpy as np
 
+from mogu.util import deprecated
 
+@deprecated
 class StockBinomialTree:
     '''
     Class that implements the binomial tree with stock price
@@ -46,6 +48,7 @@ class StockBinomialTree:
         raise Exception('Not implemented!')
 
 
+@deprecated
 class EuropeanCallBinomialTree(StockBinomialTree):
     '''
     Binomial Tree for European call option
@@ -67,6 +70,7 @@ class EuropeanCallBinomialTree(StockBinomialTree):
                 self.optionPriceTree[i][j] = np.exp(-self.rdt) * (self.p * self.optionPriceTree[i + 1][j] + (1 - self.p) * self.optionPriceTree[i + 1][j + 1])
 
 
+@deprecated
 class EuropeanPutBinomialTree(StockBinomialTree):
     '''
     Binomial Tree for European put option
@@ -88,6 +92,7 @@ class EuropeanPutBinomialTree(StockBinomialTree):
                 self.optionPriceTree[i][j] = np.exp(-self.rdt) * (self.p * self.optionPriceTree[i + 1][j] + (1 - self.p) * self.optionPriceTree[i + 1][j + 1])
 
 
+@deprecated
 class AmericanCallBinomialTree(StockBinomialTree):
     '''
     Binomial Tree for American call option
@@ -112,6 +117,7 @@ class AmericanCallBinomialTree(StockBinomialTree):
                 self.optionPriceTree[i][j] = max(imValue, euroCallValue)
 
 
+@deprecated
 class AmericanPutBinomialTree(StockBinomialTree):
     '''
     Binomial Tree for American put option
