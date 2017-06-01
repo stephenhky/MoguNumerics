@@ -7,7 +7,7 @@ def readme():
         return f.read()
 
 setup(name='mogu',
-      version="0.1.3",
+      version="0.1.4",
       description="Collection of Simple Numerical Routines",
       long_description="Collection of simple numerical routines, independent of each other",
       classifiers=[
