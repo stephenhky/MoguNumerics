@@ -1,4 +1,6 @@
-from setuptools import setup
+# from setuptools import setup
+
+from numpy.distutils.core import setup, Extension
 
 def readme():
     with open('README.md') as f:
@@ -30,9 +32,14 @@ setup(name='mogu',
                 'mogu.voterank',
                 'mogu.finance',
                 'mogu.finance.binomial'],
+      package_data={'mogu': ['finance/binomial/*.f90', 'finance/binomial/*.pyf']},
+      setup_requires=['numpy'],
       install_requires=[
           'numpy', 'scipy', 'tensorflow', 'networkx',
       ],
       scripts=['bin/concatenate_dict', 'bin/mogu_minerule', 'bin/price_option', 'bin/mogu_sammon'],
+      ext_modules = [Extension( 'binomialtree', sources=['mogu/finance/binomial/binomialtree.f90',
+                                                         'mogu/finance/binomial/binomialtree.pyf'] )],
       include_package_data=True,
       zip_safe=False)
+

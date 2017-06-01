@@ -4,6 +4,17 @@ This is a numerical packages collecting various routines of numerical algorithms
 
 I tried to make each file to be independent of each other. If there are functions that are universally used, they will be put into the package `mogu.util`. However, I try my best to keep the number of these functions as few as possible.
 
+# Installation
+
+You must have `numpy` pre-installed. GCC and GFORTRAN compilers have to be available in the machine.
+
+To install, type:
+
+```
+>>> pip install -U mogu
+```
+
+
 # Functionalities
 
 * Association rule using Apriori algorithm;
