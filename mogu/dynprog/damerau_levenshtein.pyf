@@ -5,8 +5,8 @@ python module damerau_levenshtein ! in
     interface  ! in :damerau_levenshtein
         module demarau_levenshtein ! in :damerau_levenshtein:damerau_levenshtein.f90
             function damarau_levenshtein_distance(word1,word2) result (dldist) ! in :damerau_levenshtein:damerau_levenshtein.f90:demarau_levenshtein
-                character*(*) intent(in) :: word1
-                character*(*) intent(in) :: word2
+                character intent(inout) :: word1
+                character intent(inout) :: word2
                 real :: dldist
             end function damarau_levenshtein_distance
         end module demarau_levenshtein
