@@ -45,3 +45,7 @@ integer function damarau_levenshtein_distance(word1, word2) result(dldist)
 end function
 
 end module
+
+! compiling
+! > f2py -h damerau_levenshtein.pyf -m damerau_levenshtein damerau_levenshtein.f90
+! > f2py -c damerau_levenshtein.pyf damerau_levenshtein.f90
