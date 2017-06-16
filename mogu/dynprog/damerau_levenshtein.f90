@@ -6,14 +6,14 @@ public damarau_levenshtein_distance
 contains
 
 integer function damarau_levenshtein_distance(word1, word2) result(dldist)
-  character, intent(inout) :: word1, word2
+  character, intent(in) :: word1, word2
   integer :: len1, len2
   integer :: i, j
   integer :: delcost, inscost, unequalcost, subscost, transcost
   integer, dimension(:, :), allocatable :: matrix
 
-  len1 = len(word1)
-  len2 = len(word2)
+  len1 = len_trim(word1)
+  len2 = len_trim(word2)
   allocate(matrix(len1, len2))
 
   do i = 1, len1
