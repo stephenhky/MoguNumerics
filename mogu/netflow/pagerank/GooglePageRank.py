@@ -27,7 +27,5 @@ def CalculatePageRank(digraph, beta, eps=1e-4, maxstep=1000, fortran=False):
             converged = (L1norm(newr, r) < eps)
             r = newr
             stepid += 1
-        nodepr = {}
-        for node in nodes:
-            nodepr[node] = r[nodes[node], 0]
+        nodepr = {node: r[nodes[node],0] for node in nodes}
         return nodepr
