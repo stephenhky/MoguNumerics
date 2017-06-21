@@ -1,9 +1,10 @@
 
+#include "dldist.h"
+
 #define MIN(a,b) (((a)<(b))?(a):(b))
 #define MAX(a,b) (((a)>(b))?(a):(b))
 
 #include <string.h>
-#include <stdio.h>
 
 int damerau_levenshtein(char *word1, char *word2)
 {
@@ -37,9 +38,3 @@ int damerau_levenshtein(char *word1, char *word2)
   return(matrix[len1][len2]);
 }
 
-int main(int numargs, char **words) {
-  char *word1 = words[1];
-  char *word2 = words[2];
-  printf("%s %s %i\n", word1, word2, damerau_levenshtein(word1, word2));
-  return(0);
-}
