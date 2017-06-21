@@ -25,14 +25,15 @@ int damerau_levenshtein(char *word1, char *word2)
       if ((i>1) & (j>1) & (word1[i]==word2[j-1]) & (word1[i-1]==word2[j])) {
 	score = MIN(matrix[i][j], matrix[i-2][j-2]+cost);
       }
+      matrix[i][j] = score;
     }
   }
-  for (int i=0; i<=len1; i++) for (int j=0; j<=len2; j++) {
-      printf("%i %i %i\n", i, j, matrix[i][j]);
-    }
+//  for (int i=0; i<=len1; i++) for (int j=0; j<=len2; j++) {
+//      printf("%i %i %i\n", i, j, matrix[i][j]);
+//    }
   return(matrix[len1][len2]);
 }
 
 int main() {
-  printf("driver driver %i\n", damerau_levenshtein("driver", "diver"));
+  printf("driver diver %i\n", damerau_levenshtein("driver", "rdvie"));
 }
