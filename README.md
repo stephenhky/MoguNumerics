@@ -23,9 +23,11 @@ To install, type:
 * Exponential and sigmoid curve fitting;
 * Simulated voltage for networks;
 * Voter rank: Wilson's score.
+* Dynamic programming: Damerau-Levenshtein distance.
 
 # News
 
+* 08/10/2017: `mogu` 0.1.5 released.
 * 06/01/2017: `mogu` 0.1.4 released.
 * 05/25/2017: `mogu` 0.1.3 released.
 * 05/10/2017: `mogu` 0.1.2 released.
