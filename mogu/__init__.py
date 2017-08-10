@@ -7,5 +7,6 @@ import finance
 import fit
 import netflow
 import voterank
+import dynprog
 
 from .netflow import simvoltage

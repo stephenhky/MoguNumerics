@@ -1,7 +1,6 @@
 # from setuptools import setup
 
 from numpy.distutils.core import setup, Extension
-from Cython.Build import cythonize
 
 def readme():
     with open('README.md') as f:
@@ -30,11 +29,14 @@ setup(name='mogu',
                 'mogu.util.derivatives',
                 'mogu.netflow',
                 'mogu.netflow.simvoltage',
+                'mogu.netflow.pagerank',
                 'mogu.assrule',
                 'mogu.voterank',
                 'mogu.finance',
-                'mogu.finance.binomial'],
-      package_data={'mogu': ['finance/binomial/*.f90', 'finance/binomial/*.pyf']},
+                'mogu.finance.binomial',
+                'mogu.dynprog'],
+      package_data={'mogu': ['finance/binomial/*.f90', 'finance/binomial/*.pyf',
+                             'dynprog/*.c', 'dynprog/*.i', 'dynprog/*.h']},
       setup_requires=['numpy'],
       install_requires=[
           'numpy', 'scipy', 'tensorflow', 'networkx',
@@ -42,8 +44,9 @@ setup(name='mogu',
       scripts=['bin/concatenate_dict', 'bin/mogu_minerule', 'bin/price_option', 'bin/mogu_sammon'],
       ext_modules = [Extension( 'binomialtree', sources=['mogu/finance/binomial/binomialtree.f90',
                                                          'mogu/finance/binomial/binomialtree.pyf'] ),
-                     cythonize(Extension( 'dldist', sources=['mogu/dynprog/dldist.pyx',
-                                                             'mogu/dynprog/dldist.c']))],
+                     Extension( '_dldist', sources=['mogu/dynprog/dldist_wrap.c',
+                                                    'mogu/dynprog/dldist.c']),
+                     ],
       include_package_data=True,
       zip_safe=False)
 
