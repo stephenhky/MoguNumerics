@@ -21,6 +21,7 @@ Functionalities
 * Exponential and sigmoid curve fitting;
 * Simulated voltage for networks;
 * Voter rank: Wilson's score.
+* Dynamic programming: Damerau-Levenshtein distance.
 
 Github: Github_
 
