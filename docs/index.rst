@@ -20,7 +20,8 @@ Functionalities
 * Binomial tree algorithm for European and American options pricing;
 * Exponential and sigmoid curve fitting;
 * Simulated voltage for networks;
-* Voter rank: Wilson's score.
+* Google Page rank;
+* Voter rank: Wilson's score;
 * Dynamic programming: Damerau-Levenshtein distance.
 
 Github: Github_
