@@ -7,6 +7,13 @@ bin/price_option
 mogu/__init__.py
 mogu/assrule/__init__.py
 mogu/assrule/apriori.py
+mogu/dynprog/__init__.py
+mogu/dynprog/caldldist.c
+mogu/dynprog/dldist.c
+mogu/dynprog/dldist.h
+mogu/dynprog/dldist.i
+mogu/dynprog/dldist.py
+mogu/dynprog/dldist_wrap.c
 mogu/embed/__init__.py
 mogu/embed/sammon.py
 mogu/finance/__init__.py
@@ -19,6 +26,8 @@ mogu/fit/__init__.py
 mogu/fit/exponential_fit.py
 mogu/fit/sigmoid_fit.py
 mogu/netflow/__init__.py
+mogu/netflow/pagerank/GooglePageRank.py
+mogu/netflow/pagerank/__init__.py
 mogu/netflow/simvoltage/SocialNetworkSimVoltage.py
 mogu/netflow/simvoltage/__init__.py
 mogu/netflow/simvoltage/resistancedist.py
