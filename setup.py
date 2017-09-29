@@ -8,7 +8,7 @@ def readme():
 
 
 setup(name='mogu',
-      version="0.1.5",
+      version="0.1.6",
       description="Collection of Simple Numerical Routines",
       long_description="Collection of simple numerical routines, independent of each other",
       classifiers=[
@@ -36,14 +36,17 @@ setup(name='mogu',
                 'mogu.finance.binomial',
                 'mogu.dynprog'],
       package_data={'mogu': ['finance/binomial/*.f90', 'finance/binomial/*.pyf',
-                             'dynprog/*.c', 'dynprog/*.i', 'dynprog/*.h']},
+                             'dynprog/*.c', 'dynprog/*.i', 'dynprog/*.h',
+                             'netflow/pagerank/*.f90', 'netflow/pagerank/*.pyf']},
       setup_requires=['numpy'],
       install_requires=[
-          'numpy', 'scipy', 'tensorflow', 'networkx',
+          'numpy', 'scipy', 'tensorflow', 'networkx>=2.0',
       ],
       scripts=['bin/concatenate_dict', 'bin/mogu_minerule', 'bin/price_option', 'bin/mogu_sammon'],
       ext_modules = [Extension( 'binomialtree', sources=['mogu/finance/binomial/binomialtree.f90',
                                                          'mogu/finance/binomial/binomialtree.pyf'] ),
+                     Extension( 'f90pagerank', sources=['mogu/netflow/pagerank/f90pagerank.f90',
+                                                        'mogu/netflow/pagerank/f90pagerank.pyf']),
                      Extension( '_dldist', sources=['mogu/dynprog/dldist_wrap.c',
                                                     'mogu/dynprog/dldist.c']),
                      ],

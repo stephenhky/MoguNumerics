@@ -1,0 +1,25 @@
+!    -*- f90 -*-
+! Note: the context of this file is case sensitive.
+
+python module f90pagerank ! in 
+    interface  ! in :f90pagerank
+        module f90pagerank ! in :f90pagerank:f90pagerank.f90
+            function l1norm(length,vec1,vec2) result (l1dist) ! in :f90pagerank:f90pagerank.f90:f90pagerank
+                integer, optional,intent(in),check(len(vec1)>=length),depend(vec1) :: length=len(vec1)
+                real dimension(length),intent(in) :: vec1
+                real dimension(length),intent(in),depend(length) :: vec2
+                real :: l1dist
+            end function l1norm
+            function compute_pagerank(n,a,eps,maxstep) result (r) ! in :f90pagerank:f90pagerank.f90:f90pagerank
+                integer, optional,intent(in),check(shape(a,0)==n),depend(a) :: n=shape(a,0)
+                real dimension(n,n),intent(in) :: a
+                real intent(in) :: eps
+                integer intent(in) :: maxstep
+                real dimension(n) :: r
+            end function compute_pagerank
+        end module f90pagerank
+    end interface 
+end python module f90pagerank
+
+! This file was auto-generated with f2py (version:2).
+! See http://cens.ioc.ee/projects/f2py2e/
