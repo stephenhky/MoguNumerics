@@ -25,6 +25,7 @@ To install, type:
 * Google Page rank;
 * Voter rank: Wilson's score;
 * Dynamic programming: Damerau-Levenshtein distance.
+* Topological data analysis (upcoming, optimized from [PyTDA](https://github.com/stephenhky/PyTDA))
 
 # News
 
