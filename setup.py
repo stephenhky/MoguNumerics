@@ -43,6 +43,9 @@ setup(name='mogu',
       install_requires=[
           'numpy', 'scipy', 'tensorflow', 'networkx>=2.0',
       ],
+      tests_require=[
+          'unittest2',
+      ],
       scripts=['bin/concatenate_dict', 'bin/mogu_minerule', 'bin/price_option', 'bin/mogu_sammon'],
       ext_modules = [Extension( 'binomialtree', sources=['mogu/finance/binomial/binomialtree.f90',
                                                          'mogu/finance/binomial/binomialtree.pyf'] ),
@@ -51,6 +54,7 @@ setup(name='mogu',
                      Extension( '_dldist', sources=['mogu/dynprog/dldist_wrap.c',
                                                     'mogu/dynprog/dldist.c']),
                      ],
+      test_suite="test",
       include_package_data=True,
       zip_safe=False)
 
