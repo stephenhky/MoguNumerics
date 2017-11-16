@@ -12,7 +12,7 @@ before_install:
   - conda update --yes conda
   - sudo apt-get update
   - sudo apt-get install libc6
-  - sudo apt-get install gfortran g77
+  - sudo apt-get install gfortran gcc
 install:
   - conda create --yes -n mogu-test python=$TRAVIS_PYTHON_VERSION pip numpy scipy
   - source activate mogu-test
