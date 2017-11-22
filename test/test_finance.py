@@ -1,7 +1,6 @@
 
 import unittest
 
-import mogu
 from mogu.finance.binomial import eurocall_price
 
 class test_finance(unittest.TestCase):
