@@ -52,6 +52,10 @@ class SimplicialComplex:
         boundop_i = self.boundary_operator(i)
         boundop_ip1 = self.boundary_operator(i+1)
 
+        # TODO:
+        # consider using this: https://docs.scipy.org/doc/scipy-0.16.1/reference/generated/scipy.sparse.linalg.LinearOperator.html#scipy.sparse.linalg.LinearOperator
+        # and also this: https://docs.scipy.org/doc/scipy-0.16.1/reference/generated/scipy.linalg.interpolative.estimate_rank.html
+
         if i==0:
             boundop_i_rank = 0
         else:
