@@ -13,3 +13,4 @@ def get_allpoints(simplices):
 
 from .abssimcomplex import SimplicialComplex
 from .alphacomplex import AlphaComplex
+from .vrcomplex import VietorisRipsComplex
