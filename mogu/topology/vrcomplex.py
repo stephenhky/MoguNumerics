@@ -12,7 +12,7 @@ class VietorisRipsComplex(SimplicialComplex):
         self.epsilon = epsilon
         self.distfcn = distfcn
         self.network = self.construct_network(self.pts, self.labels, self.epsilon, self.distfcn)
-        self.import_simplices(map(tuple, list(nx.find_cliques(self.network))))
+        self.import_simplices(map(tuple, nx.find_cliques(self.network)))
 
     def construct_network(self, points, labels, epsilon, distfcn):
         g = nx.Graph()

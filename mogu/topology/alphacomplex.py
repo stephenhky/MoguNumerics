@@ -21,26 +21,21 @@ class AlphaComplex(SimplicialComplex):
         self.import_simplices(self.construct_simplices(self.pts, self.labels, self.epsilon, self.distfcn))
 
     def calculate_distmatrix(self, points, labels, distfcn):
-        distdict = {}
-        for i in range(len(labels)):
-            for j in range(len(labels)):
-                distdict[(labels[i], labels[j])] = distfcn(points[i], points[j])
-        return distdict
+        return {(labels[i], labels[j]): distfcn(points[i], points[j])
+                for i in range(len(labels)) for j in range(len(labels))}
 
     def construct_simplices(self, points, labels, epsilon, distfcn):
-        delaunay = Delaunay(points)
-        delaunay_simplices = map(tuple, delaunay.simplices)
+        delaunay_simplices = map(tuple, Delaunay(points).simplices)
         distdict = self.calculate_distmatrix(points, labels, distfcn)
 
         simplices = []
         for simplex in delaunay_simplices:
             faces = list(facesiter(simplex))
             detached = map(partial(contain_detachededges, distdict=distdict, epsilon=epsilon), faces)
-            if reduce(or_, detached):
-                if len(simplex)>2:
-                    for face, notkeep in zip(faces, detached):
-                        if not notkeep:
-                            simplices.append(face)
+            if reduce(or_, detached) and len(simplex)>2:
+                for face, notkeep in zip(faces, detached):
+                    if not notkeep:
+                        simplices.append(face)
             else:
                 simplices.append(simplex)
         simplices = map(lambda simplex: tuple(sorted(simplex)), simplices)

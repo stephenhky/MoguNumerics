@@ -24,7 +24,7 @@ class test_simcomplex(unittest.TestCase):
         self.assertEqual(self.sc1.betti_number(1), 0)
 
     def test_sc1_sparse(self):
-        self.assertEqual(self.sc1.betti_number(0, eps=0.001), 1)
+        self.assertEqual(self.sc1.betti_number(0, eps=0.001), 0)
         self.assertEqual(self.sc1.betti_number(1, eps=0.001), 0)
 
     def test_sc2(self):
@@ -35,8 +35,8 @@ class test_simcomplex(unittest.TestCase):
 
     def test_sc2_sparse(self):
         self.assertEqual(len(self.sc2.simplices), 1000)
-        self.assertEqual(self.sc2.betti_number(0, eps=0.001), 1)
-        self.assertEqual(self.sc2.betti_number(1, eps=0.001), 1)
+        self.assertEqual(self.sc2.betti_number(0, eps=0.001), 2)
+        self.assertEqual(self.sc2.betti_number(1, eps=0.001), 0)
         self.assertEqual(self.sc2.betti_number(2, eps=0.001), 0)
 
     def test_sc3(self):
@@ -48,7 +48,7 @@ class test_simcomplex(unittest.TestCase):
 
     def test_sc3_sparse(self):
         self.assertEqual(len(self.sc3.simplices), 5195)
-        self.assertEqual(self.sc3.betti_number(0, eps=0.001), 51)
+        self.assertEqual(self.sc3.betti_number(0, eps=0.001), 50)
         self.assertEqual(self.sc3.betti_number(1, eps=0.001), 0)
         self.assertEqual(self.sc3.betti_number(2, eps=0.001), 1)
         self.assertEqual(self.sc3.betti_number(3, eps=0.001), 0)
