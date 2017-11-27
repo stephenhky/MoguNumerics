@@ -1,7 +1,9 @@
 
 from itertools import combinations
-from scipy.sparse import dok_matrix
 import numpy as np
+from scipy.sparse import dok_matrix
+from scipy.sparse.linalg import aslinearoperator
+from scipy.linalg.interpolative import estimate_rank
 from operator import add
 
 class SimplicialComplex:
@@ -29,7 +31,7 @@ class SimplicialComplex:
         target_simplices = self.n_faces(i-1)
 
         if len(target_simplices)==0:
-            S = dok_matrix((1, len(source_simplices)), dtype=np.float32)
+            S = dok_matrix((1, len(source_simplices)), dtype=np.float64)
             S[0, 0:len(source_simplices)] = 1
         else:
             source_simplices_dict = {}
@@ -39,7 +41,7 @@ class SimplicialComplex:
             for i in range(len(target_simplices)):
                 target_simplices_dict[target_simplices[i]] = i
 
-            S = dok_matrix((len(target_simplices), len(source_simplices)), dtype=np.float32)
+            S = dok_matrix((len(target_simplices), len(source_simplices)), dtype=np.float64)
             for source_simplex in source_simplices:
                 for a in range(len(source_simplex)):
                     target_simplex = source_simplex[:a]+source_simplex[(a+1):]
@@ -48,25 +50,28 @@ class SimplicialComplex:
                     S[i, j] = -1 if a % 2==1 else 1   # S[i, j] = (-1)**a
         return S
 
-    def betti_number(self, i):
+    def betti_number(self, i, eps=None):
         boundop_i = self.boundary_operator(i)
         boundop_ip1 = self.boundary_operator(i+1)
-
-        # TODO:
-        # consider using this: https://docs.scipy.org/doc/scipy-0.16.1/reference/generated/scipy.sparse.linalg.LinearOperator.html#scipy.sparse.linalg.LinearOperator
-        # and also this: https://docs.scipy.org/doc/scipy-0.16.1/reference/generated/scipy.linalg.interpolative.estimate_rank.html
 
         if i==0:
             boundop_i_rank = 0
         else:
+            if eps==None:
+                try:
+                    boundop_i_rank = np.linalg.matrix_rank(boundop_i.toarray())
+                except np.linalg.LinAlgError:
+                    boundop_i_rank = boundop_i.shape[1]
+            else:
+                boundop_i_rank = estimate_rank(aslinearoperator(boundop_i), eps)
+
+        if eps==None:
             try:
-                boundop_i_rank = np.linalg.matrix_rank(boundop_i.toarray())
+                boundop_ip1_rank = np.linalg.matrix_rank(boundop_ip1.toarray())
             except np.linalg.LinAlgError:
-                boundop_i_rank = boundop_i.shape[1]
-        try:
-            boundop_ip1_rank = np.linalg.matrix_rank(boundop_ip1.toarray())
-        except np.linalg.LinAlgError:
-            boundop_ip1_rank = boundop_ip1.shape[1]
+                boundop_ip1_rank = boundop_ip1.shape[1]
+        else:
+            boundop_ip1_rank = estimate_rank(aslinearoperator(boundop_ip1), eps)
 
         return ((boundop_i.shape[1]-boundop_i_rank)-boundop_ip1_rank)
 
