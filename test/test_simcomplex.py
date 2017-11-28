@@ -4,6 +4,17 @@ import numpy as np
 
 from mogu.topology import SimplicialComplex, AlphaComplex
 
+# self-constructed shapes
+# ring
+ring1d_sc = [(i, i+1) for i in range(10)] + [(10,0)]
+# torus
+torus_sc = [(i, i+1) for i in range(3)] + [(3, 0)]
+torus_sc += [(i, i+1) for i in range(10, 13)] + [(13, 10)]
+torus_sc += [(i, i+1) for i in range(20, 23)] + [(23, 20)]
+torus_sc += [(i, i+1, i+11, i+10) for i in range(3)] + [(3, 0, 10, 13)]
+torus_sc += [(i, i+1, i+21, i+20) for i in range(3)] + [(3, 0, 20, 23)]
+torus_sc += [(i+10, i+11, i+21, i+20) for i in range(3)] + [(13, 10, 20, 23)]
+
 # circular ring
 ring = np.array([[np.cos(t), np.sin(t)] for t in np.linspace(0, 2*np.pi, 1001)])[1:]
 
