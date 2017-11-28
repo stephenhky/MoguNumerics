@@ -12,7 +12,8 @@ cylinder_sc = [(0, 1, 2), (1, 2, 3), (2, 3, 0), (3, 0, 1)]
 # solid torus
 solidtorus_sc = [(0, 1, 2, 3), (1, 2, 3, 0)]
 # torus with hole
-torushole_sc = [(0, 1, 2), (1, 2, 3), (2, 0, 3)]  # wrong
+torushole_sc = [(0, 1, 2), (1, 2, 3), (2, 3, 0), (3, 0, 1),
+                (1, 0, 3), (0, 3, 2), (2, 3, 1), (2, 1, 0)]  # wrong
 
 # circular ring
 ring = np.array([[np.cos(t), np.sin(t)] for t in np.linspace(0, 2*np.pi, 1001)])[1:]
