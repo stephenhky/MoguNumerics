@@ -5,16 +5,17 @@ import numpy as np
 from mogu.topology import SimplicialComplex, AlphaComplex
 
 # self-constructed shapes
+# https://www.math.hmc.edu/~su/pcmi/projects/simplicial_module/simplicial_pcmi.pdf
 # ring
 ring1d_sc = [(i, i+1) for i in range(10)] + [(10,0)]
 # cylinder with hole
 cylinder_sc = [(0, 1, 2), (1, 2, 3), (2, 3, 0), (3, 0, 1)]
-# solid torus
-solidtorus_sc = [(0, 1, 2, 3), (1, 2, 3, 0)]
-# torus with hole
-torushole_sc = [(0, 1, 2), (1, 2, 3), (2, 3, 4), (3, 4, 5), (4, 5, 6), (5, 0, 1),
-                (1, 8, 3), (8, 3, 9), (3, 9, 5), (9, 5, 10), (5, 10, 1), (10, 1, 8),
-                (8, 0, 9), (0, 9, 2), (9, 2, 10), (2, 10, 4), (10, 4, 8), (4, 8, 0)]
+# torus
+torus_sc = [(1,5,9), (1,2,9), (2,9,3), (9,3,8), (3,8,1), (8,5,1),
+            (4,5,9), (4,9,6), (9,6,8), (6,7,8), (7,8,5), (7,4,5),
+            (1,4,6), (2,6,1), (2,6,7), (2,3,7), (3,7,1), (1,7,4)]
+# sphere
+sphere_sc = [(1,5,6), (5,6,2), (1,6,3), (3,6,2), (3,4,2), (1,4,5), (4,5,2)]
 
 # circular ring
 ring = np.array([[np.cos(t), np.sin(t)] for t in np.linspace(0, 2*np.pi, 1001)])[1:]
