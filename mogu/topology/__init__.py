@@ -19,7 +19,7 @@ def faces(simplices):
         numnodes = len(simplex)
         for r in range(numnodes, 0, -1):
             for face in combinations(simplex, r):
-                faceset.add(face)
+                faceset.add(tuple(sorted(face)))
     return faceset
 
 from .abssimcomplex import SimplicialComplex
