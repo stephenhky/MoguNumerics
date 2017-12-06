@@ -38,7 +38,7 @@ Contents:
    news
 
 .. _Github: https://github.com/stephenhky/MoguNumerics
-.. _PyPI: https://pypi.python.org/pypi/mogu/
+.. _PyPI: https://pypi.org/project/mogu/
 
 Indices and tables
 ==================
