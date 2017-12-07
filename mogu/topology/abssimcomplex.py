@@ -13,7 +13,7 @@ class SimplicialComplex:
 
     def import_simplices(self, simplices=[]):
         self.simplices = map(lambda simplex: tuple(sorted(simplex)), simplices)
-        self.face_set = faces(simplices)
+        self.face_set = faces(self.simplices)
 
     def n_faces(self, n):
         return filter(lambda face: len(face)==n+1, self.face_set)
