@@ -32,9 +32,15 @@ mogu/netflow/pagerank/f90pagerank.pyf
 mogu/netflow/simvoltage/SocialNetworkSimVoltage.py
 mogu/netflow/simvoltage/__init__.py
 mogu/netflow/simvoltage/resistancedist.py
+mogu/topology/__init__.py
+mogu/topology/abssimcomplex.py
+mogu/topology/alphacomplex.py
+mogu/topology/vrcomplex.py
 mogu/util/__init__.py
 mogu/util/deprecation.py
 mogu/util/derivatives/__init__.py
 mogu/util/derivatives/numerical_gradients.py
 mogu/voterank/__init__.py
 mogu/voterank/schemes.py
+test/test_finance.py
+test/test_simcomplex.py

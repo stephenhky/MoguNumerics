@@ -29,6 +29,7 @@ To install, type:
 
 # News
 
+* 12/08/2017: `mogu` 0.1.7 released.
 * 09/29/2017: `mogu` 0.1.6 released.
 * 08/10/2017: `mogu` 0.1.5 released.
 * 06/01/2017: `mogu` 0.1.4 released.
