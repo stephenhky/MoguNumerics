@@ -17,7 +17,7 @@ twosphere_c = [(1,3,4), (1,2,3), (2,3,4), (1,2,4)]
 
 # Alpha Complex
 # circular ring
-ring = np.array([[np.cos(t), np.sin(t)] for t in np.linspace(0, 2*np.pi, 1001)])[1:]
+ring = np.array([np.random.normal(loc=1, scale=0.01)*np.array([np.cos(t), np.sin(t)]) for t in np.linspace(0, 2*np.pi, 101)])[1:]
 # spherical ball
 sphere = np.array([[np.sin(theta)*np.cos(phi), np.sin(theta)*np.sin(phi), np.cos(theta)] for theta in np.linspace(0.02, np.pi, 51) for phi in np.linspace(0.02, 2*np.pi, 51)])
 
