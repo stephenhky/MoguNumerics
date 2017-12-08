@@ -24,8 +24,7 @@ sphere = np.array([[np.sin(theta)*np.cos(phi), np.sin(theta)*np.sin(phi), np.cos
 class test_simcomplex(unittest.TestCase):
     def setUp(self):
         self.sc1 = SimplicialComplex(simplices=[(1, 2), (2, 3), (1, 2, 3)])
-        self.sc2 = AlphaComplex(ring, 0.1)
-        self.sc3 = AlphaComplex(sphere, 0.1)
+        self.sc2 = AlphaComplex(ring, 0.05)
         self.ring1d = SimplicialComplex(simplices=ring1d_sc)
         self.cylinder = SimplicialComplex(simplices=cylinder_sc)
         self.torus = SimplicialComplex(simplices=torus_sc)
@@ -58,35 +57,16 @@ class test_simcomplex(unittest.TestCase):
         self.assertEqual(self.sc1.betti_number(0), 1)
         self.assertEqual(self.sc1.betti_number(1), 0)
 
-    def test_sc1_sparse(self):
-        self.assertEqual(self.sc1.betti_number(0, eps=0.001), 0)
-        self.assertEqual(self.sc1.betti_number(1, eps=0.001), 0)
-
     def test_sc2(self):
-        self.assertEqual(len(self.sc2.simplices), 1000)
         self.assertEqual(self.sc2.betti_number(0), 1)
         self.assertEqual(self.sc2.betti_number(1), 1)
         self.assertEqual(self.sc2.betti_number(2), 0)
 
     def test_sc2_sparse(self):
-        self.assertEqual(len(self.sc2.simplices), 1000)
-        self.assertEqual(self.sc2.betti_number(0, eps=0.001), 2)
-        self.assertEqual(self.sc2.betti_number(1, eps=0.001), 0)
+        self.assertEqual(self.sc2.betti_number(0, eps=0.001), 1)
+        self.assertEqual(self.sc2.betti_number(1, eps=0.001), 1)
         self.assertEqual(self.sc2.betti_number(2, eps=0.001), 0)
 
-    def test_sc3(self):
-        self.assertEqual(len(self.sc3.simplices), 5195)
-        self.assertEqual(self.sc3.betti_number(0), 51)
-        self.assertEqual(self.sc3.betti_number(1), 0)
-        self.assertEqual(self.sc3.betti_number(2), 1)
-        self.assertEqual(self.sc3.betti_number(3), 0)
-
-    def test_sc3_sparse(self):
-        self.assertEqual(len(self.sc3.simplices), 5195)
-        self.assertEqual(self.sc3.betti_number(0, eps=0.001), 50)
-        self.assertEqual(self.sc3.betti_number(1, eps=0.001), 0)
-        self.assertEqual(self.sc3.betti_number(2, eps=0.001), 1)
-        self.assertEqual(self.sc3.betti_number(3, eps=0.001), 0)
 
 
 if __name__ == '__main__':
