@@ -52,5 +52,6 @@ setup(name='mogu',
                                                     'mogu/dynprog/dldist.c']),
                      ],
       include_package_data=True,
+      test_suite="test",
       zip_safe=False)
 
