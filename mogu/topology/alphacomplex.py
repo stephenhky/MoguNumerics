@@ -1,9 +1,11 @@
 
+from functools import partial
+
 from scipy.spatial import Delaunay, distance
 
 from .abssimcomplex import SimplicialComplex
 from . import facesiter, get_allpoints
-from functools import partial
+
 
 def calculate_distmatrix(points, labels, distfcn):
     return {(labels[i], labels[j]): distfcn(points[i], points[j])

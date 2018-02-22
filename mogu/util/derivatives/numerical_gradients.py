@@ -1,8 +1,10 @@
 from itertools import product
 
 import numpy as np
+from numba import jit
 
 # abstract tensor derivatives
+@jit(cache=True)
 def abstract_tensor_derivative_element(tensor_derivative_expression, fcn, X, indices, dx=None, tol=1e-8):
     if dx == None:
         tdx = min(0.1, abs(0.1 * X[indices])) if X[indices] != 0. else 0.1
@@ -16,17 +18,20 @@ def abstract_tensor_derivative_element(tensor_derivative_expression, fcn, X, ind
     else:
         return tensor_derivative_expression(fcn, X, indices, dx)
 
+@jit(cache=True)
 def abstract_derivative_gradient(tensor_derivative_expression, fcn, X, *args, **kwargs):
     dfval = np.zeros(X.shape)
     for indices in product(*map(range, X.shape)):
         dfval[indices] = abstract_tensor_derivative_element(tensor_derivative_expression, fcn, X, indices, *args, **kwargs)
     return dfval
 
+@jit(cache=True)
 def grad_element(fcn, X, indices, dx):
     dX = np.zeros(X.shape)
     dX[indices] = dx
     return (fcn(X + dX) - fcn(X - dX)) / (2 * dx)
 
+@jit(cache=True)
 def divgrad_element(fcn, X, indices, dx):
     dX = np.zeros(X.shape)
     dX[indices] = dx

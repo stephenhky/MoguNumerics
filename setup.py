@@ -41,7 +41,7 @@ setup(name='mogu',
                              'netflow/pagerank/*.f90', 'netflow/pagerank/*.pyf']},
       setup_requires=['numpy',],
       install_requires=[
-          'numpy', 'scipy', 'tensorflow', 'networkx>=2.0',
+          'numpy', 'scipy', 'numba', 'tensorflow', 'networkx>=2.0',
       ],
       tests_require=[
           'unittest2',

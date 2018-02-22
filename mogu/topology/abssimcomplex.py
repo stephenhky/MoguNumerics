@@ -1,9 +1,10 @@
 
+from operator import add
+
 import numpy as np
 from scipy.sparse import dok_matrix
 from scipy.sparse.linalg import aslinearoperator
 from scipy.linalg.interpolative import estimate_rank
-from operator import add
 
 from . import faces
 

@@ -1,15 +1,17 @@
 from operator import add
 from math import sqrt
 
+from numba import jit
+
 golden_ratio = (sqrt(5) - 1) * 0.5
 
-
+@jit(cache=True)
 def sumSquaresErrors(xlist, ylist, alpha):
     if len(xlist) != len(ylist):
         return None
     return reduce(add, map(lambda x, y: (x ** alpha - y) ** 2, xlist, ylist))
 
-
+@jit(cache=True)
 def goldenSearchMin(func, x1, x2, tol=1e-5):
     if abs(x1 - x2) < tol:
         return x1

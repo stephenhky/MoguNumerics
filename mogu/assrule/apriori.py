@@ -3,6 +3,8 @@ from operator import and_
 from itertools import combinations
 import csv
 
+from numba import jit
+
 class AprioriAssociationRule:
     def __init__(self, inputfile):
         self.transactions = []

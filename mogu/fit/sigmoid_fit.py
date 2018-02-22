@@ -1,19 +1,23 @@
 import math
 
 import numpy as np
+from numba import jit
 
 from ..util.derivatives import numerical_gradients as ng
 
-
+@jit
 def sigmoid_prob(x, A, B):
     return 1./(1+math.exp(A*x+B))
 
+@jit
 def label(f, threshold=0.):
     if f == threshold:
         return 0
     else:
         return 1 if f > threshold else -1
         
+
+@jit
 def entropy_error_fcn(scores, A, B):
     fcnval = 0.
     for score in scores:
@@ -27,7 +31,9 @@ def entropy_error_fcn(scores, A, B):
         elif p == 1.:
             fcnval += - t*math.log(p)            
     return fcnval
-    
+
+
+@jit
 def gradient_search_min_entropy_error_fcn(scores, tol=1e-1, sigma=0.1):
     max_score = max(scores)
     min_score = min(scores)
