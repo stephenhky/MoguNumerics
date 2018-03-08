@@ -1,15 +1,18 @@
 
 import networkx as nx
 
-class SocialNetworkSimVoltage:
-    def __init__(self):
-        nodes = ['Stephen', 'Sinnie', 'Elaine']
-        edges = [('Stephen', 'Sinnie', 0.2),
+
+default_nodes = ['Stephen', 'Sinnie', 'Elaine']
+default_edges = [('Stephen', 'Sinnie', 0.2),
                  ('Sinnie', 'Stephen', 0.2),
                  ('Sinnie', 'Elaine', 0.3),
                  ('Elaine', 'Sinnie', 0.2),
                  ('Stephen', 'Elaine', 1.1),
                  ('Elaine', 'Stephen', 1.2)]
+
+
+class SocialNetworkSimVoltage:
+    def __init__(self, nodes=default_nodes, edges=default_edges):
         self.initializeClass(nodes, edges)
 
     def initializeClass(self, nodes, edges):
@@ -22,8 +25,6 @@ class SocialNetworkSimVoltage:
         for node in nodes:
             self.wordNet.add_node(node)
         self.wordNet.add_weighted_edges_from(edges)
-        #for edge in edges:
-        #    self.wordNet.add_edge(*edge)  
 
     def checkPersonIrrelevantClumsy(self, person, person1, person2):
         all_paths = nx.algorithms.all_simple_paths(self.wordNet, person1, 
