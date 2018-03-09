@@ -36,16 +36,8 @@ class SocialNetworkSimVoltage:
         intersection_paths = list(set(path1) & set(path2))
         #print intersection_paths
         return (len(intersection_paths) != 1)
-    
-    def getResistance(self, person1, person2, printVol = False):
-        if person1 == person2:
-            return 0.0
-        try:
-            distTwoWords = nx.shortest_path_length(self.wordNet, person1, person2, weight='weight')
-        except nx.exception.NetworkXNoPath:
-            return float('inf')
 
-        # initialization
+    def initloop(self, person1, person2):
         volDict = {}
         for node in self.wordNet:
             if node == person1:
@@ -59,8 +51,58 @@ class SocialNetworkSimVoltage:
                     distFrom1 = float(nx.shortest_path_length(self.wordNet, person1, node, weight='weight'))
                     distFrom2 = float(nx.shortest_path_length(self.wordNet, node, person2, weight='weight'))
                     volDict[node] = distFrom2 / (distFrom1 + distFrom2)
+        return volDict
+
+    def compute_incurrent(self, node, volDict):
+        in_current = 0
+        for pred in self.wordNet.predecessors(node):
+            if (volDict[pred] >= 0.0) and (volDict[pred] <= 1.0):
+                if volDict[pred] > volDict[node]:
+                    potDiff = volDict[pred] - volDict[node]
+                    resEdge = self.wordNet[pred][node]['weight']
+                    in_current += potDiff / resEdge
+        return in_current
+
+    def compute_outcurrent(self, node, volDict):
+        out_current = 0
+        for succ in self.wordNet.successors(node):
+            if (volDict[succ] >= 0.0) and (volDict[succ] <= 1.0):
+                if volDict[node] > volDict[succ]:
+                    potDiff = volDict[node] - volDict[succ]
+                    resEdge = self.wordNet[node][succ]['weight']
+                    out_current += potDiff
+        return out_current
+
+    def average_VR(self, node, volDict):
+        sumVOverR = 0.0
+        numRecR = 0.0
+        for pred in self.wordNet.predecessors(node):
+            if (volDict[pred] >= 0.0) and (volDict[pred] <= 1.0):
+                if volDict[pred] > volDict[node]:
+                    resEdge = self.wordNet[pred][node]['weight']
+                    sumVOverR += volDict[pred] / resEdge
+                    numRecR += 1. / resEdge
+        for succ in self.wordNet.successors(node):
+            if (volDict[succ] >= 0.0) and (volDict[succ] <= 1.0):
+                if volDict[node] > volDict[succ]:
+                    resEdge = self.wordNet[node][succ]['weight']
+                    sumVOverR += volDict[succ] / resEdge
+                    numRecR += 1. / resEdge
+        return sumVOverR, numRecR
+
+    def getResistance(self, person1, person2, printVol = False):
+        if person1 == person2:
+            return 0.0
+        try:
+            distTwoWords = nx.shortest_path_length(self.wordNet, person1, person2, weight='weight')
+        except nx.exception.NetworkXNoPath:
+            return float('inf')
+
+        # initialization
+        volDict = self.initloop(person1, person2)
         tempVolDict = {node: volDict[node] for node in self.wordNet}
 
+        # iteration: computing the potential of each node
         converged = False
         step = 0
         while (not converged) and step < self.maxSteps:
@@ -73,37 +115,10 @@ class SocialNetworkSimVoltage:
                 elif (volDict[node] < 0.0) or (volDict[node] > 1.0):
                     tempVolDict[node] = 10.0
                 else:
-                    predNodes = self.wordNet.predecessors(node)
-                    succNodes = self.wordNet.successors(node)
-                    in_current = 0.0
-                    out_current = 0.0
-                    for pred in predNodes:
-                        if (volDict[pred] >= 0.0) and (volDict[pred] <= 1.0):
-                            if volDict[pred] > volDict[node]:
-                                potDiff = volDict[pred] - volDict[node]
-                                resEdge = self.wordNet[pred][node]['weight']
-                                in_current += potDiff / resEdge
-                    for succ in succNodes:
-                        if (volDict[succ] >= 0.0) and (volDict[succ] <= 1.0):
-                            if volDict[node] > volDict[succ]:
-                                potDiff = volDict[node] - volDict[succ]
-                                resEdge = self.wordNet[node][succ]['weight']
-                                out_current += potDiff
+                    in_current = self.compute_incurrent(node, volDict)
+                    out_current = self.compute_outcurrent(node, volDict)
                     if abs(in_current - out_current) > self.errTol:
-                        sumVOverR = 0.0
-                        numRecR = 0
-                        for pred in predNodes:
-                            if (volDict[pred]>=0.0) and (volDict[pred]<=1.0):
-                                if volDict[pred] > volDict[node]:
-                                    resEdge = self.wordNet[pred][node]['weight']
-                                    sumVOverR += volDict[pred] / resEdge
-                                    numRecR += 1. / resEdge
-                        for succ in succNodes:
-                            if (volDict[succ]>=0.0) and (volDict[succ]<=1.0):
-                                if volDict[node] > volDict[succ]:
-                                    resEdge = self.wordNet[node][succ]['weight']
-                                    sumVOverR += volDict[succ] / resEdge
-                                    numRecR += 1. /resEdge
+                        sumVOverR, numRecR = self.average_VR(node, volDict)
                         if numRecR == 0:
                             tempVolDict[node] = 0.0
                         else:
@@ -112,13 +127,17 @@ class SocialNetworkSimVoltage:
                     else:
                         tempConverged = tempConverged and True
             converged = tempConverged
+            # value update
             for node in self.wordNet:
                 volDict[node] = tempVolDict[node]
             step += 1
             if printVol:
-                print volDict
+                print(volDict)
 
-        startCurrent = 0.0        
+        # calculating the resistance
+        # startCurrent = sum([(1.0-volDict[rootsucc])/self.wordNet[person1][rootsucc]['weight']
+        #                     for rootsucc in self.wordNet.successors(person1) if volDict[rootsucc]<=1.0])
+        startCurrent = 0.0
         for rootsucc in self.wordNet.successors(person1):
             if volDict[rootsucc] <= 1.0:
                 resEdge = self.wordNet[person1][rootsucc]['weight']

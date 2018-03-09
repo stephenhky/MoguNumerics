@@ -56,6 +56,7 @@ class test_SocialNetwork(unittest.TestCase):
                  ('Wallace', 'Shirley', 1),
                  ('Zoe', 'Wallace', 1)]
         wn1 = SocialNetworkSimVoltage(nodes=nodes, edges=edges)
+        wn1.maxSteps = 10
 
         testresults = pd.read_csv('socialnetworkranks.csv',
                                   header=None,
@@ -66,7 +67,7 @@ class test_SocialNetwork(unittest.TestCase):
             name1 = row['name1']
             name2 = row['name2']
             resistance = row['resistance']
-            self.assertAlmostEqual(wn1.getResistance(name1, name2), resistance, places=5)
+            self.assertAlmostEqual(wn1.getResistance(name1, name2, printVol=True), resistance, places=5)
             print('%s\t%s : %.4f passed.' % (name1, name2, resistance))
 
     def test_resistdist(self):
