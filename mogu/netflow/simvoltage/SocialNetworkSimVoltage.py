@@ -22,25 +22,16 @@ class SocialNetworkSimVoltage:
 
     def constructSocialNetwork(self, nodes, edges):
         self.wordNet = nx.DiGraph()
-        for node in nodes:
-            self.wordNet.add_node(node)
+        self.wordNet.add_nodes_from(nodes)
         self.wordNet.add_weighted_edges_from(edges)
-
-    def checkPersonIrrelevantClumsy(self, person, person1, person2):
-        all_paths = nx.algorithms.all_simple_paths(self.wordNet, person1, 
-                                                   person2, weight='weight')
-        for path in all_paths:
-            if (person in path):
-                return False
-        return True
         
     def checkPersonIrrelevant(self, person, person1, person2):
         path1 = nx.algorithms.shortest_path(self.wordNet,
-                                           source = person1, target = person,
-                                           weight='weight')
+                                            source = person1, target = person,
+                                            weight='weight')
         path2 = nx.algorithms.shortest_path(self.wordNet,
-                                           source = person, target = person2,
-                                           weight='weight')
+                                            source = person, target = person2,
+                                            weight='weight')
         #print path1, path2
         intersection_paths = list(set(path1) & set(path2))
         #print intersection_paths
@@ -50,10 +41,11 @@ class SocialNetworkSimVoltage:
         if person1 == person2:
             return 0.0
         try:
-            distTwoWords = self.getShortestDist(person1, person2)
+            distTwoWords = nx.shortest_path_length(self.wordNet, person1, person2, weight='weight')
         except nx.exception.NetworkXNoPath:
             return float('inf')
-        
+
+        # initialization
         volDict = {}
         for node in self.wordNet:
             if node == person1:
@@ -64,13 +56,11 @@ class SocialNetworkSimVoltage:
                 if self.checkPersonIrrelevant(node, person1, person2):
                     volDict[node] = 10.0
                 else:
-                    distFrom1 = float(self.getShortestDist(person1, node))
-                    distFrom2 = float(self.getShortestDist(node, person2))
+                    distFrom1 = float(nx.shortest_path_length(self.wordNet, person1, node, weight='weight'))
+                    distFrom2 = float(nx.shortest_path_length(self.wordNet, node, person2, weight='weight'))
                     volDict[node] = distFrom2 / (distFrom1 + distFrom2)
-        tempVolDict = {}
-        for node in self.wordNet:
-            tempVolDict[node] = volDict[node]
-            
+        tempVolDict = {node: volDict[node] for node in self.wordNet}
+
         converged = False
         step = 0
         while (not converged) and step < self.maxSteps:
@@ -138,8 +128,6 @@ class SocialNetworkSimVoltage:
     def drawNetwork(self):
         nx.draw(self.wordNet)
         
-    def getShortestDist(self, person1, person2):
-        return nx.shortest_path_length(self.wordNet, person1, person2,
-                                       weight='weight')
+
         
 
