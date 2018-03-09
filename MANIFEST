@@ -44,3 +44,4 @@ mogu/voterank/__init__.py
 mogu/voterank/schemes.py
 test/test_finance.py
 test/test_simcomplex.py
+test/test_socialnetworks.py

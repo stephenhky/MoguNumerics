@@ -6,14 +6,15 @@ See: http://en.wikipedia.org/wiki/Resistance_distance
 '''
 
 import numpy as np
+from scipy.sparse import dok_matrix
+
+default_nodes = ['Stephen', 'Sinnie', 'Elaine']
+default_edges = [('Stephen', 'Sinnie'),
+                 ('Elaine', 'Sinnie'),
+                 ('Elaine', 'Stephen')]
 
 class GraphResistanceDistance:
-    def __init__(self, nodes=None, edges=None):
-        if nodes==None or edges==None:
-            nodes = ['Stephen', 'Sinnie', 'Elaine']
-            edges = [('Stephen', 'Sinnie'),
-                     ('Elaine', 'Sinnie'),
-                     ('Elaine', 'Stephen')]
+    def __init__(self, nodes=default_nodes, edges=default_edges):
         self.initializeClass(nodes, edges)
         self.Omega = self.computeResistanceDistance()
         
@@ -23,22 +24,17 @@ class GraphResistanceDistance:
             idx1 = self.nodesIdx[node2]
             return self.Omega[idx0, idx1]
         else:
-            return None
+            unknown_keys = [node for node in [node1, node2] if not self.nodesIdx.has_key(node)]
+            raise Exception('Unknown key(s): '+' '.join(unknown_keys))
     
     def initializeClass(self, nodes, edges):
         self.nodes = nodes
         # all edges are unique
-        edges_set = set([])
-        for edge in edges:
-            edges_set.add(tuple(sorted(edge)))
-        self.edges = list(edges_set) 
-        
-        self.nodesIdx = {}
-        for idx in range(len(self.nodes)):
-            self.nodesIdx[self.nodes[idx]] = idx
-            
+        self.edges = list(set([tuple(sorted(edge)) for edge in edges]))
+        self.nodesIdx = {self.nodes[idx]: idx for idx in range(len(self.nodes))}
+
     def calculateDegreeMatrix(self):
-        Dmatrix = np.zeros([len(self.nodes), len(self.nodes)])
+        Dmatrix = dok_matrix((len(self.nodes), len(self.nodes)), dtype=np.float)
         for edge in self.edges:
             for node in edge:
                 idx = self.nodesIdx[node]
@@ -46,7 +42,7 @@ class GraphResistanceDistance:
         return Dmatrix
         
     def calculateAdjacencyMatrix(self):
-        Amatrix = np.zeros([len(self.nodes), len(self.nodes)])
+        Amatrix = dok_matrix((len(self.nodes), len(self.nodes)), dtype=np.float)
         for edge in self.edges:
             idx0 = self.nodesIdx[edge[0]]
             idx1 = self.nodesIdx[edge[1]]
@@ -57,9 +53,9 @@ class GraphResistanceDistance:
     def computeResistanceDistance(self):
         Dmatrix = self.calculateDegreeMatrix()
         Amatrix = self.calculateAdjacencyMatrix()
-        Lmatrix = Dmatrix - Amatrix
+        Lmatrix = Dmatrix.toarray() - Amatrix.toarray()
         Lambda = np.linalg.pinv(Lmatrix)
-        Omega = np.zeros([len(self.nodes), len(self.nodes)])
+        Omega = dok_matrix((len(self.nodes), len(self.nodes)), dtype=np.float)
         for i in range(len(self.nodes)):
             for j in range(len(self.nodes)):
                 Omega[i, j] = Lambda[i, i] + Lambda[j, j] - 2 * Lambda[i, j]

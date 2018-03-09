@@ -3,7 +3,7 @@ import unittest
 
 import numpy as np
 import pandas as pd
-from mogu.netflow.simvoltage.SocialNetworkSimVoltage import SocialNetworkSimVoltage
+from mogu.netflow.simvoltage import SocialNetworkSimVoltage, GraphResistanceDistance
 
 class test_SocialNetwork(unittest.TestCase):
     def setUp(self):
@@ -69,6 +69,11 @@ class test_SocialNetwork(unittest.TestCase):
             self.assertAlmostEqual(wn1.getResistance(name1, name2), resistance, places=5)
             print('%s\t%s : %.4f passed.' % (name1, name2, resistance))
 
+    def test_resistdist(self):
+        obj = GraphResistanceDistance()
+        self.assertAlmostEqual(obj.getResistance('Stephen', 'Sinnie'), 0.6666666666666667, places=5)
+        self.assertAlmostEqual(obj.getResistance('Elaine', 'Sinnie'), 0.6666666666666667, places=5)
+        self.assertAlmostEqual(obj.getResistance('Elaine', 'Stephen'), 0.6666666666666667, places=5)
 
 if __name__ == '__main__':
     unittest.main()
