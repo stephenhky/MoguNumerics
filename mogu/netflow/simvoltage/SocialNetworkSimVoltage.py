@@ -70,7 +70,7 @@ class SocialNetworkSimVoltage:
                 if volDict[node] > volDict[succ]:
                     potDiff = volDict[node] - volDict[succ]
                     resEdge = self.wordNet[node][succ]['weight']
-                    out_current += potDiff
+                    out_current += potDiff / resEdge
         return out_current
 
     def average_VR(self, node, volDict):
@@ -100,6 +100,8 @@ class SocialNetworkSimVoltage:
 
         # initialization
         volDict = self.initloop(person1, person2)
+        if printVol:
+            print(volDict)
         tempVolDict = {node: volDict[node] for node in self.wordNet}
 
         # iteration: computing the potential of each node
