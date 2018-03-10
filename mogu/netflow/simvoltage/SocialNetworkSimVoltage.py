@@ -32,9 +32,7 @@ class SocialNetworkSimVoltage:
         path2 = nx.algorithms.shortest_path(self.wordNet,
                                             source = person, target = person2,
                                             weight='weight')
-        #print path1, path2
         intersection_paths = list(set(path1) & set(path2))
-        #print intersection_paths
         return (len(intersection_paths) != 1)
 
     def initloop(self, person1, person2):
@@ -137,13 +135,8 @@ class SocialNetworkSimVoltage:
                 print(volDict)
 
         # calculating the resistance
-        # startCurrent = sum([(1.0-volDict[rootsucc])/self.wordNet[person1][rootsucc]['weight']
-        #                     for rootsucc in self.wordNet.successors(person1) if volDict[rootsucc]<=1.0])
-        startCurrent = 0.0
-        for rootsucc in self.wordNet.successors(person1):
-            if volDict[rootsucc] <= 1.0:
-                resEdge = self.wordNet[person1][rootsucc]['weight']
-                startCurrent += (1.0 - volDict[rootsucc]) / resEdge
+        startCurrent = sum([(1.0-volDict[rootsucc])/self.wordNet[person1][rootsucc]['weight']
+                            for rootsucc in self.wordNet.successors(person1) if volDict[rootsucc]<=1.0])
         return (1.0 / startCurrent)
                                 
     def drawNetwork(self):
