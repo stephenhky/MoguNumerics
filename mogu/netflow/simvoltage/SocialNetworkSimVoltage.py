@@ -40,35 +40,34 @@ class SocialNetworkSimVoltage:
         for node in self.wordNet:
             if node == person1:
                 volDict[node] = 1.0
+                continue
             elif node == person2:
                 volDict[node] = 0.0
-            else:
-                if self.checkPersonIrrelevant(node, person1, person2):
-                    volDict[node] = 10.0
-                else:
-                    distFrom1 = float(nx.shortest_path_length(self.wordNet, person1, node, weight='weight'))
-                    distFrom2 = float(nx.shortest_path_length(self.wordNet, node, person2, weight='weight'))
-                    volDict[node] = distFrom2 / (distFrom1 + distFrom2)
+                continue
+            elif self.checkPersonIrrelevant(node, person1, person2):
+                volDict[node] = 10.0
+                continue
+            distFrom1 = float(nx.shortest_path_length(self.wordNet, person1, node, weight='weight'))
+            distFrom2 = float(nx.shortest_path_length(self.wordNet, node, person2, weight='weight'))
+            volDict[node] = distFrom2 / (distFrom1 + distFrom2)
         return volDict
 
     def compute_incurrent(self, node, volDict):
         in_current = 0
         for pred in self.wordNet.predecessors(node):
-            if (volDict[pred] >= 0.0) and (volDict[pred] <= 1.0):
-                if volDict[pred] > volDict[node]:
-                    potDiff = volDict[pred] - volDict[node]
-                    resEdge = self.wordNet[pred][node]['weight']
-                    in_current += potDiff / resEdge
+            if (volDict[pred] >= 0.0) and (volDict[pred] <= 1.0) and volDict[pred] > volDict[node]:
+                potDiff = volDict[pred] - volDict[node]
+                resEdge = self.wordNet[pred][node]['weight']
+                in_current += potDiff / resEdge
         return in_current
 
     def compute_outcurrent(self, node, volDict):
         out_current = 0
         for succ in self.wordNet.successors(node):
-            if (volDict[succ] >= 0.0) and (volDict[succ] <= 1.0):
-                if volDict[node] > volDict[succ]:
-                    potDiff = volDict[node] - volDict[succ]
-                    resEdge = self.wordNet[node][succ]['weight']
-                    out_current += potDiff / resEdge
+            if (volDict[succ] >= 0.0) and (volDict[succ] <= 1.0) and volDict[node] > volDict[succ]:
+                potDiff = volDict[node] - volDict[succ]
+                resEdge = self.wordNet[node][succ]['weight']
+                out_current += potDiff / resEdge
         return out_current
 
     def average_VR(self, node, volDict):
@@ -110,22 +109,21 @@ class SocialNetworkSimVoltage:
             for node in self.wordNet:
                 if node == person1:
                     tempVolDict[node] = 1.0
+                    continue
                 elif node == person2:
                     tempVolDict[node] = 0.0
+                    continue
                 elif (volDict[node] < 0.0) or (volDict[node] > 1.0):
                     tempVolDict[node] = 10.0
+                    continue
+                in_current = self.compute_incurrent(node, volDict)
+                out_current = self.compute_outcurrent(node, volDict)
+                if abs(in_current - out_current) > self.errTol:
+                    sumVOverR, numRecR = self.average_VR(node, volDict)
+                    tempVolDict[node] = 0.0 if numRecR==0 else sumVOverR / numRecR
+                    tempConverged = False
                 else:
-                    in_current = self.compute_incurrent(node, volDict)
-                    out_current = self.compute_outcurrent(node, volDict)
-                    if abs(in_current - out_current) > self.errTol:
-                        sumVOverR, numRecR = self.average_VR(node, volDict)
-                        if numRecR == 0:
-                            tempVolDict[node] = 0.0
-                        else:
-                            tempVolDict[node] = sumVOverR / numRecR
-                        tempConverged = False
-                    else:
-                        tempConverged = tempConverged and True
+                    tempConverged = tempConverged and True
             converged = tempConverged
             # value update
             for node in self.wordNet:
