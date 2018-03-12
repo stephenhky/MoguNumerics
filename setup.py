@@ -1,3 +1,5 @@
+
+# must import thisfirst. Ref: # must import this. Ref: https://stackoverflow.com/questions/7932028/setup-py-for-packages-that-depend-on-both-cython-and-f2py?rq=1
 from setuptools import setup
 
 from numpy.distutils.core import setup, Extension

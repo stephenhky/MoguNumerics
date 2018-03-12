@@ -14,11 +14,8 @@ before_install:
   - sudo apt-get install libc6
   - sudo apt-get install gfortran
 install:
-  - conda create --yes -n shorttext-test python=$TRAVIS_PYTHON_VERSION pip numpy scipy
-  - source activate shorttext-test
-  - pip install unittest2
-  - pip install pytest
-  - pip install google-compute-engine
+  - conda create --yes -n mogu-test python=$TRAVIS_PYTHON_VERSION pip numpy scipy
+  - source activate mogu-test
   - pip install -U .
 script:
   - python setup.py test
