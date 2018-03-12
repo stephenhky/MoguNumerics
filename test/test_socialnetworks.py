@@ -1,4 +1,5 @@
 
+import os
 import unittest
 
 import numpy as np
@@ -57,7 +58,8 @@ class test_SocialNetwork(unittest.TestCase):
                  ('Zoe', 'Wallace', 1)]
         wn1 = SocialNetworkSimVoltage(nodes=nodes, edges=edges)
 
-        testresults = pd.read_csv('socialnetworkranks.csv',
+        THIS_DIR = os.path.dirname(os.path.abspath(__file__))
+        testresults = pd.read_csv(os.path.join(THIS_DIR, 'socialnetworkranks.csv'),
                                   header=None,
                                   names=['name1', 'name2', 'resistance'],
                                   dtype={'name1': str, 'name2': str, 'resistance': np.float})
