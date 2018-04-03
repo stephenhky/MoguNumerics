@@ -10,9 +10,9 @@ before_install:
   - ./miniconda.sh -b
   - export PATH=/home/travis/miniconda2/bin:$PATH
   - conda update --yes conda
-  - apt-get update
-  - apt-get install libc6
-  - apt-get install gfortran
+  - sudo apt-get update
+  - sudo apt-get install libc6
+  - sudo apt-get install gfortran
 install:
   - conda create --yes -n mogu-test python=$TRAVIS_PYTHON_VERSION pip numpy scipy
   - source activate mogu-test
