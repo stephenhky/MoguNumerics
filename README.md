@@ -21,7 +21,7 @@ To install, type:
 * Embedding: Sammon algorithm;
 * Binomial tree algorithm for European and American options pricing;
 * Exponential and sigmoid curve fitting;
-* Simulated voltage for networks;
+* Simulated voltage for networks; (moved to new package [graphflow](https://github.com/stephenhky/GraphFlow) since release 0.1.12)
 * Google Page rank;
 * Voter rank: Wilson's score;
 * Dynamic programming: Damerau-Levenshtein distance.
@@ -29,6 +29,7 @@ To install, type:
 
 # News
 
+* 04/12/2018: `mogu` 0.1.12 released.
 * 03/10/2018: `mogu` 0.1.11 released.
 * 03/09/2018: `mogu` 0.1.10 released.
 * 03/02/2018: `mogu` 0.1.9 released.
