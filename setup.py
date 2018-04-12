@@ -10,7 +10,7 @@ def readme():
 
 
 setup(name='mogu',
-      version="0.1.11",
+      version="0.1.12",
       description="Collection of Simple Numerical Routines",
       long_description="Collection of simple numerical routines, independent of each other",
       classifiers=[
@@ -39,12 +39,11 @@ setup(name='mogu',
                 'mogu.dynprog',
                 'mogu.topology'],
       package_data={'mogu': ['finance/binomial/*.f90', 'finance/binomial/*.pyf',
-                             'dynprog/*.c', 'dynprog/*.i', 'dynprog/*.h',
-                             'netflow/pagerank/*.f90', 'netflow/pagerank/*.pyf'],
+                             'dynprog/*.c', 'dynprog/*.i', 'dynprog/*.h',],
                     'test': ['*.csv']},
       setup_requires=['numpy',],
       install_requires=[
-          'numpy', 'scipy', 'numba', 'tensorflow', 'networkx>=2.0',
+          'numpy', 'scipy', 'numba', 'tensorflow', 'networkx>=2.0', 'graphflow>=0.1.0',
       ],
       tests_require=[
           'unittest2', 'pandas',
@@ -52,8 +51,6 @@ setup(name='mogu',
       scripts=['bin/concatenate_dict', 'bin/mogu_minerule', 'bin/price_option', 'bin/mogu_sammon'],
       ext_modules = [Extension( 'binomialtree', sources=['mogu/finance/binomial/binomialtree.f90',
                                                          'mogu/finance/binomial/binomialtree.pyf'] ),
-                     Extension( 'f90pagerank', sources=['mogu/netflow/pagerank/f90pagerank.f90',
-                                                        'mogu/netflow/pagerank/f90pagerank.pyf']),
                      Extension( '_dldist', sources=['mogu/dynprog/dldist_wrap.c',
                                                     'mogu/dynprog/dldist.c']),
                      ],
