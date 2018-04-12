@@ -25,13 +25,6 @@ mogu/fit/__init__.py
 mogu/fit/exponential_fit.py
 mogu/fit/sigmoid_fit.py
 mogu/netflow/__init__.py
-mogu/netflow/pagerank/GooglePageRank.py
-mogu/netflow/pagerank/__init__.py
-mogu/netflow/pagerank/f90pagerank.f90
-mogu/netflow/pagerank/f90pagerank.pyf
-mogu/netflow/simvoltage/SocialNetworkSimVoltage.py
-mogu/netflow/simvoltage/__init__.py
-mogu/netflow/simvoltage/resistancedist.py
 mogu/topology/__init__.py
 mogu/topology/abssimcomplex.py
 mogu/topology/alphacomplex.py
