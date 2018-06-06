@@ -7,8 +7,7 @@ I tried to make each file to be independent of each other. If there are function
 # Installation
 
 You must have `numpy` pre-installed. GCC and GFORTRAN compilers have to be available in the machine.
-
-To install, type:
+After ensuring they have been installed, type the following to install `mogu`:
 
 ```
 >>> pip install -U mogu
