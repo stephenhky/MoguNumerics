@@ -22,7 +22,8 @@ Functionalities
 * Simulated voltage for networks;
 * Google Page rank;
 * Voter rank: Wilson's score;
-* Dynamic programming: Damerau-Levenshtein distance.
+* Dynamic programming: Damerau-Levenshtein distance;
+* Topological data analysis (optimized from [PyTDA](https://github.com/stephenhky/PyTDA)).
 
 Github: Github_
 
