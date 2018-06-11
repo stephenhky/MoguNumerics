@@ -4,6 +4,8 @@ from setuptools import setup
 
 from numpy.distutils.core import setup, Extension
 
+from Cython.Build import cythonize
+
 def readme():
     with open('README.md') as f:
         return f.read()
@@ -37,7 +39,7 @@ setup(name='mogu',
                 'mogu.dynprog',
                 'mogu.topology'],
       package_data={'mogu': ['finance/binomial/*.f90', 'finance/binomial/*.pyf',
-                             'dynprog/*.c', 'dynprog/*.i', 'dynprog/*.h',],
+                             'dynprog/*.pyx',],
                     'test': ['*.csv']},
       setup_requires=['numpy',],
       install_requires=[
@@ -48,10 +50,7 @@ setup(name='mogu',
       ],
       scripts=['bin/concatenate_dict', 'bin/mogu_minerule', 'bin/price_option', 'bin/mogu_sammon'],
       ext_modules = [Extension( 'binomialtree', sources=['mogu/finance/binomial/binomialtree.f90',
-                                                         'mogu/finance/binomial/binomialtree.pyf'] ),
-                     Extension( '_dldist', sources=['mogu/dynprog/dldist_wrap.c',
-                                                    'mogu/dynprog/dldist.c']),
-                     ],
+                                                         'mogu/finance/binomial/binomialtree.pyf'] ),],
       include_package_data=True,
       test_suite="test",
       zip_safe=False)
