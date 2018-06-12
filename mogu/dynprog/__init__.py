@@ -1,5 +1,4 @@
 
-from .dldist import damerau_levenshtein, longest_common_prefix
+from .dldist import damerau_levenshtein
+from .lcp import longest_common_prefix
 
-
-# SWIG is used here

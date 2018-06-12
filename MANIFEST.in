@@ -1,0 +1,6 @@
+include README.md
+include mogu/dynprog/dldist.pyx
+include mogu/dynprog/lcp.pyx
+include mogu/finance/binomial/binomialtree.f90
+include mogu/finance/binomial/binomialtree.pyf
+include test/socialnetworkranks.csv
