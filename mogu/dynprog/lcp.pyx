@@ -2,9 +2,9 @@
 import numpy as np
 cimport numpy as np
 
-def longest_common_prefix(unsigned char[:] word1, unsigned char[:] word2):
-    cdef int len1 = word1.shape[0]
-    cdef int len2 = word2.shape[0]
+def longest_common_prefix(str word1, str word2):
+    cdef int len1 = len(word1)
+    cdef int len2 = len(word2)
 
     cdef int lcp = 0
     cdef int i

@@ -2,6 +2,7 @@
 # must import thisfirst. Ref: # must import this. Ref: https://stackoverflow.com/questions/7932028/setup-py-for-packages-that-depend-on-both-cython-and-f2py?rq=1
 from setuptools import setup
 
+import numpy as np
 from numpy.distutils.core import setup, Extension
 
 from Cython.Build import cythonize
@@ -15,7 +16,7 @@ def readme():
 
 
 setup(name='mogu',
-      version="0.1.12",
+      version="0.1.13a",
       description="Collection of Simple Numerical Routines",
       long_description="Collection of simple numerical routines, independent of each other",
       classifiers=[
@@ -40,20 +41,24 @@ setup(name='mogu',
                 'mogu.finance',
                 'mogu.finance.binomial',
                 'mogu.dynprog',
-                'mogu.topology'],
-      package_data={'mogu': ['finance/binomial/*.f90', 'finance/binomial/*.pyf',
-                             'dynprog/*.pyx',],
+                'mogu.topology',
+                'mogu.probxwalk'],
+      package_data={'mogu': ['finance/binomial/*.f90', 'finance/binomial/*.pyf', 'dynprog/*.pyx'],
                     'test': ['*.csv']},
-      setup_requires=['numpy',],
+      setup_requires=['numpy', 'Cython'],
       install_requires=[
-          'numpy', 'scipy', 'numba', 'tensorflow', 'networkx>=2.0', 'graphflow>=0.1.1',
+          'Cython', 'numpy', 'scipy', 'numba', 'tensorflow', 'networkx>=2.0', 'graphflow>=0.1.1',
       ],
       tests_require=[
           'unittest2', 'pandas',
       ],
       scripts=['bin/concatenate_dict', 'bin/mogu_minerule', 'bin/price_option', 'bin/mogu_sammon'],
-      ext_modules = [Extension( 'binomialtree', sources=['mogu/finance/binomial/binomialtree.f90',
-                                                         'mogu/finance/binomial/binomialtree.pyf'] ),],
+      include_dirs=[np.get_include()],
+      ext_modules = [Extension( 'binomialtree',
+                                sources=['mogu/finance/binomial/binomialtree.f90',
+                                         'mogu/finance/binomial/binomialtree.pyf'] ),]
+                    +cythonize(['mogu/dynprog/dldist.pyx',
+                                'mogu/dynprog/lcp.pyx']),
       include_package_data=True,
       test_suite="test",
       zip_safe=False)
