@@ -21,13 +21,14 @@ After ensuring they have been installed, type the following to install `mogu`:
 * Binomial tree algorithm for European and American options pricing;
 * Exponential and sigmoid curve fitting;
 * Simulated voltage for networks; (moved to new package [graphflow](https://github.com/stephenhky/GraphFlow) since release 0.1.12)
-* Google Page rank;
+* Google Page rank; (moved to new package [graphflow](https://github.com/stephenhky/GraphFlow) since release 0.1.12)
 * Voter rank: Wilson's score;
-* Dynamic programming: Damerau-Levenshtein distance.
-* Topological data analysis (optimized from [PyTDA](https://github.com/stephenhky/PyTDA))
+* Dynamic programming: Damerau-Levenshtein distance;
+* Topological data analysis (implementation moved to [`moguTDA`](https://github.com/stephenhky/MoguTDA) since release 0.1.13)
 
 # News
 
+* 06/12/2018: `mogu` 0.1.13 released.
 * 04/12/2018: `mogu` 0.1.12 released.
 * 03/10/2018: `mogu` 0.1.11 released.
 * 03/09/2018: `mogu` 0.1.10 released.
