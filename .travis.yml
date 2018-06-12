@@ -17,6 +17,7 @@ install:
   - conda create --yes -n mogu-test python=$TRAVIS_PYTHON_VERSION pip numpy scipy
   - source activate mogu-test
   - pip install Cython
+  - pip install -U pandas
   - pip install -U .
 script:
   - python setup.py test
