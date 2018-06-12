@@ -6,6 +6,9 @@ from numpy.distutils.core import setup, Extension
 
 from Cython.Build import cythonize
 
+# https://stackoverflow.com/questions/7932028/setup-py-for-packages-that-depend-on-both-cython-and-f2py
+# how to include f2py and cython at the same time
+
 def readme():
     with open('README.md') as f:
         return f.read()
