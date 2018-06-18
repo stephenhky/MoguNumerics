@@ -6,10 +6,18 @@ python:
   - "3.6"
   - "3.6-dev"  # 3.6 development branch
 #  - "3.7-dev"  # 3.7 development branch    # failing at 3.7-dev
-# command to install dependencies
-install:
+before_install:
+  - wget 'http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh' -O miniconda.sh
+  - chmod +x miniconda.sh
+  - ./miniconda.sh -b
+  - export PATH=/home/travis/miniconda2/bin:$PATH
+  - conda update --yes conda
+  - sudo apt-get update
   - sudo apt-get install libc6
   - sudo apt-get install gfortran
+install:
+  - conda create --yes -n mogu-test python=$TRAVIS_PYTHON_VERSION pip numpy scipy
+  - source activate mogu-test
   - pip install -U Cython
   - pip install -U pandas
   - pip install -U .
