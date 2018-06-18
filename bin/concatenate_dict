@@ -28,6 +28,6 @@ if __name__=='__main__':
         try:
             resultdict.update(thisdict)
         except TypeError:
-            print 'File ', infile, ' is not a valid Python dict!'
+            print('File ', infile, ' is not a valid Python dict!')
 
     writePickledObjToFile(resultdict, open(args.output_file, 'wb'))

@@ -20,9 +20,9 @@ from mogu.assrule import AprioriAssociationRule
 if __name__ == '__main__':
     alg = AprioriAssociationRule(args.filename)
     alg.runApriori(minSupport=args.minSupport, minConfidence=args.minConfidence)
-    print 'Support Items:'
+    print('Support Items:')
     for key in alg.toRetItems:
-        print tuple(key), ' : ', alg.toRetItems[key]
-    print 'Rules:'
+        print(tuple(key), ' : ', alg.toRetItems[key])
+    print('Rules:')
     for elem1, elem2, confidence in alg.associationRules:
-        print tuple(elem1), '-->', tuple(elem2), ':', confidence
+        print(tuple(elem1), '-->', tuple(elem2), ':', confidence)

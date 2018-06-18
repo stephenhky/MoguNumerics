@@ -36,13 +36,13 @@ def sammon_embedding(Xmat, initYmat, tol=1e-8, alpha=0.3, nbsteps=1000):
 
     # training
     c = sess.run(cost, feed_dict={X: Xmat})
-    print "initial cost = ", c
+    print("initial cost = ", c)
     converged = False
     i = 0
     while (not converged) and (i < nbsteps):
         sess.run(train, feed_dict={X: Xmat})
         newc = sess.run(cost, feed_dict={X: Xmat})
-        print "epoch: ", i, " cost = ", newc
+        print("epoch: ", i, " cost = ", newc)
         converged = (abs(newc-c)<tol)
         i += 1
         c = newc
