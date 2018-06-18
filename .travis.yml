@@ -2,10 +2,7 @@ language: python
 python:
   - "2.7"
   - "3.5"
-  - "3.5-dev"  # 3.5 development branch
   - "3.6"
-  - "3.6-dev"  # 3.6 development branch
-#  - "3.7-dev"  # 3.7 development branch    # failing at 3.7-dev
 before_install:
   - wget 'http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh' -O miniconda.sh
   - chmod +x miniconda.sh
@@ -23,4 +20,4 @@ install:
   - pip install -U .
 # command to run tests
 script:
-  - pytest # or py.test for Python versions 3.5 and below
+  - python setup.py test # or py.test for Python versions 3.5 and below
