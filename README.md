@@ -1,5 +1,7 @@
 # Mogu: a Collection of Simple Numerical Routines
 
+[![Build Status](https://travis-ci.org/stephenhky/MoguNumerics.svg?branch=master)](https://travis-ci.org/stephenhky/MoguNumerics)
+
 This is a numerical packages collecting various routines of numerical algorithms. This is not only for convenience, but also demonstration.
 
 I tried to make each file to be independent of each other. If there are functions that are universally used, they will be put into the package `mogu.util`. However, I try my best to keep the number of these functions as few as possible.
@@ -28,6 +30,7 @@ After ensuring they have been installed, type the following to install `mogu`:
 
 # News
 
+* 06/18/2018: `mogu` 0.2.0 released.
 * 06/12/2018: `mogu` 0.1.13 released.
 * 04/12/2018: `mogu` 0.1.12 released.
 * 03/10/2018: `mogu` 0.1.11 released.
