@@ -22,13 +22,13 @@ def get_argparser():
 
 def main(args):
     pricer = optiondict[args.type.lower()](args.S0, args.X, args.r, args.sigma, args.T, args.nbsteps)
-    print 'initial stock price = ', args.S0
-    print 'strike price = ', args.X
-    print 'interest rate (per time unit) = ', args.r
-    print 'volatility (per time unit) = ', args.sigma
-    print 'maturity time (time unit) = ', args.T
-    print 'number of discrete time steps = ', args.nbsteps
-    print 'type of option: ', args.type, '; price = ', pricer.getPrice()
+    print('initial stock price = ', args.S0)
+    print('strike price = ', args.X)
+    print('interest rate (per time unit) = ', args.r)
+    print('volatility (per time unit) = ', args.sigma)
+    print('maturity time (time unit) = ', args.T)
+    print('number of discrete time steps = ', args.nbsteps)
+    print('type of option: ', args.type, '; price = ', pricer.getPrice())
 
 if __name__ == '__main__':
     parser = get_argparser()

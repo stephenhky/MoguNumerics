@@ -1,9 +1,8 @@
-sudo: true
-dist: trusty
-sudo: required
 language: python
 python:
   - "2.7"
+  - "3.5"
+  - "3.6"
 before_install:
   - wget 'http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh' -O miniconda.sh
   - chmod +x miniconda.sh
@@ -16,7 +15,9 @@ before_install:
 install:
   - conda create --yes -n mogu-test python=$TRAVIS_PYTHON_VERSION pip numpy scipy
   - source activate mogu-test
-  - pip install Cython
+  - pip install -U Cython
+  - pip install -U pandas
   - pip install -U .
+# command to run tests
 script:
-  - python setup.py test
+  - python setup.py test # or py.test for Python versions 3.5 and below

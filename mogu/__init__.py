@@ -1,14 +1,14 @@
 
-import util
+from . import util
 
-import assrule
-import embed
-import finance
-import fit
-import netflow
-import voterank
-import dynprog
-import topology
-import probxwalk
+from . import assrule
+from . import embed
+from . import finance
+from . import fit
+from . import netflow
+from . import voterank
+from . import dynprog
+from . import topology
+from . import probxwalk
 
 from .netflow import simvoltage
