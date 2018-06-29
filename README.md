@@ -26,7 +26,8 @@ After ensuring they have been installed, type the following to install `mogu`:
 * Google Page rank; (moved to new package [graphflow](https://github.com/stephenhky/GraphFlow) since release 0.1.12)
 * Voter rank: Wilson's score;
 * Dynamic programming: Damerau-Levenshtein distance;
-* Topological data analysis (implementation moved to [`moguTDA`](https://github.com/stephenhky/MoguTDA) since release 0.1.13)
+* Topological data analysis; (implementation moved to [`moguTDA`](https://github.com/stephenhky/MoguTDA) since release 0.1.13)
+* Gini coefficients.
 
 # News
 
