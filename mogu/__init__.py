@@ -10,6 +10,7 @@ from . import voterank
 from . import dynprog
 from . import topology
 from . import probxwalk
+from . import random
 
 from .netflow import simvoltage
 
