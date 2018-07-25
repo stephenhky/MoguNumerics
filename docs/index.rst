@@ -24,7 +24,8 @@ Functionalities
 * Voter rank: Wilson's score;
 * Dynamic programming: Damerau-Levenshtein distance;
 * Topological data analysis; (optimized from PyTDA_))
-* Gini coefficients.
+* Gini coefficients;
+* Multivariate Gaussian distribution sampling.
 
 Github: Github_
 
