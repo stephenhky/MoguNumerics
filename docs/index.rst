@@ -23,7 +23,9 @@ Functionalities
 * Google Page rank;
 * Voter rank: Wilson's score;
 * Dynamic programming: Damerau-Levenshtein distance;
-* Topological data analysis (optimized from [PyTDA](https://github.com/stephenhky/PyTDA)).
+* Topological data analysis; (optimized from PyTDA_))
+* Gini coefficients;
+* Multivariate Gaussian distribution sampling.
 
 Github: Github_
 
@@ -40,6 +42,7 @@ Contents:
 
 .. _Github: https://github.com/stephenhky/MoguNumerics
 .. _PyPI: https://pypi.org/project/mogu/
+.. _PyTDA: https://github.com/stephenhky/PyTDA
 
 Indices and tables
 ==================
