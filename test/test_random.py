@@ -30,17 +30,17 @@ class test_random(unittest.TestCase):
         for i in range(len(mean)):
             self.assertAlmostEqual(sampled_mean[i],
                                    mean[i],
-                                   tol=1.96*np.sqrt(covmat[i, i]/nb_samples))
+                                   delta=1.96*np.sqrt(covmat[i, i]/nb_samples))
 
         # ref: https://stats.stackexchange.com/questions/287144/variance-of-a-sample-covariance-for-normal-variables
         corrcoef = covmat[0, 1]/np.sqrt(covmat[0, 0]*covmat[1, 1])
         cov_of_cov = np.array([[2*covmat[0, 0]*covmat[0, 0], (1+corrcoef*corrcoef)*covmat[0, 0]*covmat[1, 1]],
-                               [(1+corrcoef*corrcoef)*covmat[0, 0]*covmat[1, 1], 2*covmat[1, 1]*covmat[1, 2]]])
+                               [(1+corrcoef*corrcoef)*covmat[0, 0]*covmat[1, 1], 2*covmat[1, 1]*covmat[1, 1]]])
         cov_of_cov /= np.sqrt(nb_samples-1.)
         for i, j in product(range(len(mean)), range(len(mean))):
             self.assertAlmostEqual(sampled_cov[i, j],
                                    covmat[i, j],
-                                   tol=1.96*cov_of_cov[i, j])
+                                   delta=1.96*cov_of_cov[i, j])
 
 
 if __name__ == '__main__':
