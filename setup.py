@@ -16,7 +16,7 @@ def readme():
 
 
 setup(name='mogu',
-      version="0.2.1a1",
+      version="0.2.1",
       description="Collection of Simple Numerical Routines",
       long_description="Collection of simple numerical routines, independent of each other",
       classifiers=[
@@ -28,6 +28,7 @@ setup(name='mogu',
           "Programming Language :: Python :: 3.7",
           "Programming Language :: Fortran",
           "Programming Language :: Cython",
+          "Programming Language :: C",
           "License :: OSI Approved :: MIT License",
       ],
       keywords="mogu numerics computation",
@@ -46,12 +47,13 @@ setup(name='mogu',
                 'mogu.finance.binomial',
                 'mogu.dynprog',
                 'mogu.probxwalk',
-                'mogu.random'],
+                'mogu.random',
+                'mogu.econ'],
       package_data={'mogu': ['finance/binomial/*.f90', 'finance/binomial/*.pyf', 'dynprog/*.pyx'],
                     'test': ['*.csv']},
       setup_requires=['numpy', 'Cython'],
       install_requires=[
-          'Cython', 'numpy', 'scipy', 'numba', 'tensorflow', 'networkx>=2.0', 'graphflow>=0.1.1', 'mogutda',
+          'Cython', 'numpy', 'scipy', 'numba', 'tensorflow', 'networkx>=2.0', 'graphflow>=0.1.1', 'mogutda>=0.1.1',
       ],
       tests_require=[
           'unittest2', 'pandas',
