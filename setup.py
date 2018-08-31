@@ -53,7 +53,7 @@ setup(name='mogu',
                     'test': ['*.csv']},
       setup_requires=['numpy', 'Cython'],
       install_requires=[
-          'Cython', 'numpy', 'scipy', 'numba', 'tensorflow', 'networkx>=2.0', 'graphflow>=0.1.1', 'mogutda>=0.1.1',
+          'Cython', 'numpy', 'scipy', 'numba', 'tensorflow>=1.10.0', 'networkx>=2.0', 'graphflow>=0.1.1', 'mogutda>=0.1.1',
       ],
       tests_require=[
           'unittest2', 'pandas',
