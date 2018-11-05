@@ -57,7 +57,7 @@ setup(name='mogu',
       tests_require=[
           'unittest2', 'pandas',
       ],
-      scripts=['bin/concatenate_dict', 'bin/mogu_minerule', 'bin/price_option', 'bin/mogu_sammon'],
+      scripts=['bin/concatenate_dict', 'bin/mogu_minerule', 'bin/price_option'],
       include_dirs=[np.get_include()],
       ext_modules = [Extension( 'binomialtree',
                                 sources=['mogu/finance/binomial/binomialtree.f90',
