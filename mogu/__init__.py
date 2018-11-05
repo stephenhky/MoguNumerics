@@ -2,7 +2,6 @@
 from . import util
 
 from . import assrule
-from . import embed
 from . import finance
 from . import fit
 from . import netflow

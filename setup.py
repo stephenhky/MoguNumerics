@@ -16,7 +16,7 @@ def readme():
 
 
 setup(name='mogu',
-      version="0.2.1",
+      version="0.3.0a01",
       description="Collection of Simple Numerical Routines",
       long_description="Collection of simple numerical routines, independent of each other",
       classifiers=[
@@ -37,7 +37,6 @@ setup(name='mogu',
       author_email="stephenhky@yahoo.com.hk",
       license='MIT',
       packages=['mogu',
-                'mogu.embed',
                 'mogu.fit',
                 'mogu.util',
                 'mogu.util.derivatives',
@@ -53,12 +52,12 @@ setup(name='mogu',
                     'test': ['*.csv']},
       setup_requires=['numpy', 'Cython'],
       install_requires=[
-          'Cython', 'numpy', 'scipy', 'numba', 'tensorflow>=1.10.0', 'networkx>=2.0', 'graphflow>=0.1.1', 'mogutda>=0.1.1',
+          'Cython', 'numpy', 'scipy', 'numba', 'networkx>=2.0', 'graphflow>=0.1.1', 'mogutda>=0.1.1',
       ],
       tests_require=[
           'unittest2', 'pandas',
       ],
-      scripts=['bin/concatenate_dict', 'bin/mogu_minerule', 'bin/price_option', 'bin/mogu_sammon'],
+      scripts=['bin/concatenate_dict', 'bin/mogu_minerule', 'bin/price_option'],
       include_dirs=[np.get_include()],
       ext_modules = [Extension( 'binomialtree',
                                 sources=['mogu/finance/binomial/binomialtree.f90',
