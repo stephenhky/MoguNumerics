@@ -5,10 +5,16 @@ from setuptools import setup
 import numpy as np
 from numpy.distutils.core import setup, Extension
 
-from Cython.Build import cythonize
-
 # https://stackoverflow.com/questions/7932028/setup-py-for-packages-that-depend-on-both-cython-and-f2py
 # how to include f2py and cython at the same time
+
+try:
+    from Cython.Build import cythonize
+    dynprog_ext_modules = cythonize(['mogu/dynprog/dldist.pyx', 'mogu/dynprog/lcp.pyx'])
+except ImportError:
+    dynprog_ext_modules = [Extension('mogu.dynprog.dldist', ['mogu/dynprog/dldist.c']),
+                           Extension('mogu.dynprog.lcp', ['mogu/dynprog/lcp.c'])]
+
 
 def readme():
     with open('README.md') as f:
@@ -62,8 +68,7 @@ setup(name='mogu',
       ext_modules = [Extension( 'binomialtree',
                                 sources=['mogu/finance/binomial/binomialtree.f90',
                                          'mogu/finance/binomial/binomialtree.pyf'] ),]
-                    +cythonize(['mogu/dynprog/dldist.pyx',
-                                'mogu/dynprog/lcp.pyx']),
+                    +dynprog_ext_modules,
       include_package_data=True,
       test_suite="test",
       zip_safe=False)
