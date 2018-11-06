@@ -19,7 +19,6 @@ After ensuring they have been installed, type the following to install `mogu`:
 # Functionalities
 
 * Association rule using Apriori algorithm;
-* Embedding: Sammon algorithm;
 * Binomial tree algorithm for European and American options pricing;
 * Exponential and sigmoid curve fitting;
 * Simulated voltage for networks; (moved to new package [graphflow](https://github.com/stephenhky/GraphFlow) since release 0.1.12)
@@ -28,7 +27,8 @@ After ensuring they have been installed, type the following to install `mogu`:
 * Dynamic programming: Damerau-Levenshtein distance;
 * Topological data analysis; (implementation moved to [`moguTDA`](https://github.com/stephenhky/MoguTDA) since release 0.1.13)
 * Gini coefficients;
-* Multivariate Gaussian distribution sampling.
+* Multivariate Gaussian distribution sampling;
+* probability crosswalk.
 
 # News
 

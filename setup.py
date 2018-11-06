@@ -16,7 +16,7 @@ def readme():
 
 
 setup(name='mogu',
-      version="0.3.0a01",
+      version="0.3.0a02",
       description="Collection of Simple Numerical Routines",
       long_description="Collection of simple numerical routines, independent of each other",
       classifiers=[
