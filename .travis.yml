@@ -10,7 +10,6 @@ before_install:
   - sudo apt-get install libc6
   - sudo apt-get install gfortran
 install:
-  - pip install Cython
   - pip install -U pandas
   - pip install -U .
 # command to run tests
