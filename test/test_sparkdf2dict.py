@@ -35,7 +35,7 @@ class TestFuzzyLogic(unittest.TestCase):
         pass
 
     def test_convert2Dict(self):
-        jsonobj = mogu.spark.convertRowsToDict(self.scdf)
+        jsonobj = mogu.spark.convertRowsToDict(self.scdf.collect())
         self.assertEqual(len(jsonobj), 4)
 
 
