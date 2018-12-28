@@ -10,6 +10,7 @@ from . import dynprog
 from . import topology
 from . import probxwalk
 from . import random
+from . import spark
 
 from .netflow import simvoltage
 

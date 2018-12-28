@@ -28,7 +28,8 @@ After ensuring they have been installed, type the following to install `mogu`:
 * Topological data analysis; (implementation moved to [`moguTDA`](https://github.com/stephenhky/MoguTDA) since release 0.1.13)
 * Gini coefficients;
 * Multivariate Gaussian distribution sampling;
-* probability crosswalk.
+* probability crosswalk;
+* PySpark dataframe to `dict`.
 
 # News
 

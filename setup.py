@@ -22,7 +22,7 @@ def readme():
 
 
 setup(name='mogu',
-      version="0.3.0",
+      version="0.4.0a01",
       description="Collection of Simple Numerical Routines",
       long_description="Collection of simple numerical routines, independent of each other",
       classifiers=[
@@ -53,12 +53,13 @@ setup(name='mogu',
                 'mogu.dynprog',
                 'mogu.probxwalk',
                 'mogu.random',
-                'mogu.econ'],
+                'mogu.econ',
+                'mogu.spark'],
       package_data={'mogu': ['finance/binomial/*.f90', 'finance/binomial/*.pyf', 'dynprog/*.pyx'],
                     'test': ['*.csv']},
       setup_requires=['numpy', 'Cython'],
       install_requires=[
-          'Cython', 'numpy', 'scipy', 'numba', 'networkx>=2.0', 'graphflow>=0.1.1', 'mogutda>=0.1.1',
+          'Cython', 'numpy', 'scipy', 'numba', 'networkx>=2.0', 'graphflow>=0.1.1', 'mogutda>=0.1.1', 'pyspark>=2.0.0'
       ],
       tests_require=[
           'unittest2', 'pandas',
