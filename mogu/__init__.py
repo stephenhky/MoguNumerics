@@ -10,7 +10,9 @@ from . import dynprog
 from . import topology
 from . import probxwalk
 from . import random
-from . import spark
+
+# Not loading spark module while importing `mogu`. Load it by explicitly `mogu.spark`.
+#from . import spark
 
 from .netflow import simvoltage
 

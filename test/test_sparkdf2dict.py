@@ -4,7 +4,7 @@ from pyspark import SparkConf, SparkContext
 from pyspark.sql import SQLContext
 from pyspark.sql.types import Row
 
-import mogu
+from mogu.spark import convertRowsToDict
 
 class TestFuzzyLogic(unittest.TestCase):
     def setUp(self):
@@ -35,7 +35,7 @@ class TestFuzzyLogic(unittest.TestCase):
         pass
 
     def test_convert2Dict(self):
-        jsonobj = mogu.spark.convertRowsToDict(self.scdf.collect())
+        jsonobj = convertRowsToDict(self.scdf.collect())
         self.assertEqual(len(jsonobj), 4)
         for obj in jsonobj:
             self.assertEqual(len(obj), 2)
