@@ -11,6 +11,9 @@ from . import topology
 from . import probxwalk
 from . import random
 
+# Not loading spark module while importing `mogu`. Load it by explicitly `mogu.spark`.
+#from . import spark
+
 from .netflow import simvoltage
 
 from . import econ
