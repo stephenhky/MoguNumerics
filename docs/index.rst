@@ -15,17 +15,18 @@ as few as possible.
 Functionalities
 ---------------
 
-* Association rule using Apriori algorithm;
-* Embedding: Sammon algorithm;
+* Association rule using apriori algorithm;
 * Binomial tree algorithm for European and American options pricing;
 * Exponential and sigmoid curve fitting;
-* Simulated voltage for networks;
-* Google Page rank;
+* Simulated voltage for networks; (moved to new package [graphflow](https://github.com/stephenhky/GraphFlow) since release 0.1.12)
+* Google Page rank; (moved to new package [graphflow](https://github.com/stephenhky/GraphFlow) since release 0.1.12)
 * Voter rank: Wilson's score;
 * Dynamic programming: Damerau-Levenshtein distance;
-* Topological data analysis; (optimized from PyTDA_))
+* Topological data analysis; (implementation moved to [`moguTDA`](https://github.com/stephenhky/MoguTDA) since release 0.1.13)
 * Gini coefficients;
-* Multivariate Gaussian distribution sampling.
+* Multivariate Gaussian distribution sampling;
+* probability crosswalk;
+* PySpark dataframe to `dict`.
 
 Github: Github_
 

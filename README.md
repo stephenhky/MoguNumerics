@@ -18,7 +18,7 @@ After ensuring they have been installed, type the following to install `mogu`:
 
 # Functionalities
 
-* Association rule using Apriori algorithm;
+* Association rule using apriori algorithm;
 * Binomial tree algorithm for European and American options pricing;
 * Exponential and sigmoid curve fitting;
 * Simulated voltage for networks; (moved to new package [graphflow](https://github.com/stephenhky/GraphFlow) since release 0.1.12)
@@ -33,6 +33,7 @@ After ensuring they have been installed, type the following to install `mogu`:
 
 # News
 
+* 12/30/2018: `mogu` 0.4.0 released.
 * 11/06/2018: `mogu` 0.3.0 released.
 * 07/25/2018: `mogu` 0.2.1 released.
 * 06/18/2018: `mogu` 0.2.0 released.
