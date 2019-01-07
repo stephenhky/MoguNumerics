@@ -1,6 +1,8 @@
 News
 ====
 
+* 12/30/2018: `mogu` 0.4.0 released.
+* 11/06/2018: `mogu` 0.3.0 released.
 * 07/25/2018: `mogu` 0.2.1 released.
 * 06/18/2018: `mogu` 0.2.0 released.
 * 06/12/2018: `mogu` 0.1.13 released.
