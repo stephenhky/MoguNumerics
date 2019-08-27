@@ -1,7 +1,6 @@
 
 import numpy as np
 from itertools import product
-import random
 
 
 def decompose_tensor_jennrich(rank3tensor):
