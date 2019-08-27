@@ -30,10 +30,12 @@ After ensuring they have been installed, type the following to install `mogu`:
 * Gini coefficients;
 * Multivariate Gaussian distribution sampling;
 * probability crosswalk;
-* PySpark dataframe to `dict`.
+* PySpark dataframe to `dict`;
+* Tensor decomposition using Jennrich algorithm.
 
 # News
 
+* 08/26/2019: `mogu` 0.5.0 released.
 * 01/07/2019: `mogu` 0.4.1 released.
 * 12/30/2018: `mogu` 0.4.0 released.
 * 11/06/2018: `mogu` 0.3.0 released.
