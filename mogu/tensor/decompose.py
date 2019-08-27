@@ -37,9 +37,9 @@ def decompose_tensor_jennrich(rank3tensor):
             B = np.zeros(nbcomp * rank3tensor.shape[2])
             eqidx = 0
             for k in range(rank3tensor.shape[2]):
-                for i, j in np.random.choices(list(product(range(rank3tensor.shape[0]), range(rank3tensor.shape[1]))),
-                                              size=nbcomp,
-                                              replace=False):
+                for i, j in np.random.choice(list(product(range(rank3tensor.shape[0]), range(rank3tensor.shape[1]))),
+                                             size=nbcomp,
+                                             replace=False):
                     B[eqidx] = rank3tensor[i, j, k]
                     for ck in range(nbcomp):
                         A[eqidx, ck * rank3tensor.shape[2] + k] = eigvecs_u[i, idx_pairs[ck][0]] * eigvecs_v[j, idx_pairs[ck][1]]
