@@ -60,3 +60,7 @@ def decompose_tensor_jennrich(rank3tensor):
 
     # return values
     return rearranged_eigvecs_u, rearranged_eigvecs_v, rearranged_eigvecs_w
+
+
+def tensor_decompose_ALS(rank3tensor):
+    pass
