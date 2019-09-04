@@ -1,7 +1,7 @@
 
 import numpy as np
 from itertools import product
-
+from tfnumpy.tensor import rank3tensor_decomposition_ALS
 
 def decompose_tensor_jennrich(rank3tensor):
     # initialize two random variables
@@ -62,5 +62,5 @@ def decompose_tensor_jennrich(rank3tensor):
     return rearranged_eigvecs_u, rearranged_eigvecs_v, rearranged_eigvecs_w
 
 
-def tensor_decompose_ALS(rank3tensor):
-    pass
+def decompose_tensor_ALS(rank3tensor, k, *args, **kwargs):
+    return rank3tensor_decomposition_ALS(rank3tensor, k, *args, **kwargs)
