@@ -22,7 +22,7 @@ def readme():
 
 
 setup(name='mogu',
-      version="0.6.0a01",
+      version="0.6.0a02",
       description="Collection of Simple Numerical Routines",
       long_description="Collection of simple numerical routines, independent of each other",
       classifiers=[
@@ -31,6 +31,7 @@ setup(name='mogu',
           "Programming Language :: Python :: 3.5",
           "Programming Language :: Python :: 3.6",
           "Programming Language :: Python :: 3.7",
+          "Programming Language :: Python :: 3.8",
           "Programming Language :: Fortran",
           "Programming Language :: Cython",
           "Programming Language :: C",
