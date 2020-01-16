@@ -60,7 +60,7 @@ setup(name='mogu',
       setup_requires=['numpy', 'Cython'],
       install_requires=[
           'Cython', 'numpy', 'scipy', 'numba', 'networkx>=2.0', 'graphflow>=0.1.1',
-          'mogutda>=0.1.1', 'pyspark>=2.0.0', 'tfnumpy>=0.0.6'
+          'mogutda>=0.1.1', 'pyspark>=2.0.0', 'tfnumpy>=0.1.1'
       ],
       tests_require=[
           'unittest2', 'pandas',
