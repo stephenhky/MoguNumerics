@@ -22,13 +22,12 @@ def readme():
 
 
 setup(name='mogu',
-      version="0.5.1",
+      version="0.6.0a01",
       description="Collection of Simple Numerical Routines",
       long_description="Collection of simple numerical routines, independent of each other",
       classifiers=[
           "Topic :: Scientific/Engineering :: Information Analysis",
           "Topic :: Scientific/Engineering :: Mathematics",
-          "Programming Language :: Python :: 2.7",
           "Programming Language :: Python :: 3.5",
           "Programming Language :: Python :: 3.6",
           "Programming Language :: Python :: 3.7",
