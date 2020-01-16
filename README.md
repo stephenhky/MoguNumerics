@@ -35,6 +35,7 @@ After ensuring they have been installed, type the following to install `mogu`:
 
 # News
 
+* 01/16/2020: `mogu` 0.6.0 released.
 * 09/07/2019: `mogu` 0.5.1 released.
 * 08/26/2019: `mogu` 0.5.0 released.
 * 01/07/2019: `mogu` 0.4.1 released.
