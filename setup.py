@@ -28,7 +28,6 @@ setup(name='mogu',
       classifiers=[
           "Topic :: Scientific/Engineering :: Information Analysis",
           "Topic :: Scientific/Engineering :: Mathematics",
-          "Programming Language :: Python :: 3.5",
           "Programming Language :: Python :: 3.6",
           "Programming Language :: Python :: 3.7",
           "Programming Language :: Python :: 3.8",
@@ -62,7 +61,7 @@ setup(name='mogu',
       setup_requires=['numpy', 'Cython'],
       install_requires=[
           'Cython', 'numpy', 'scipy', 'numba', 'networkx>=2.0', 'graphflow>=0.1.1',
-          'mogutda>=0.1.1', 'pyspark>=2.0.0', 'tfnumpy>=0.0.6'
+          'mogutda>=0.1.1', 'pyspark>=2.0.0', 'tfnumpy>=0.1.1'
       ],
       tests_require=[
           'unittest2', 'pandas',

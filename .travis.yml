@@ -1,6 +1,5 @@
 language: python
 python:
-  - "3.5"
   - "3.6"
   - "3.7"
   - "3.8"
@@ -22,6 +21,7 @@ before_install:
   - echo "log4j.logger.org.apache.parquet=ERROR" >> "$SPARK_HOME"/conf/log4j.properties
 install:
   - pip install -U pandas
+  - pip install -U tensorflow>=2.0.0
   - pip install -U .
 # command to run tests
 script:
