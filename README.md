@@ -1,7 +1,10 @@
 # Mogu: a Collection of Simple Numerical Routines
 
-[![Build Status](https://travis-ci.org/stephenhky/MoguNumerics.svg?branch=master)](https://travis-ci.org/stephenhky/MoguNumerics)
+[![CircleCI](https://circleci.com/gh/stephenhky/MoguNumerics.svg?style=svg)](https://circleci.com/gh/stephenhky/MoguNumerics.svg)
 [![GitHub release](https://img.shields.io/github/release/stephenhky/MoguNumerics.svg?maxAge=3600)](https://github.com/stephenhky/MoguNumerics/releases)
+[![Updates](https://pyup.io/repos/github/stephenhky/MoguNumerics/shield.svg)](https://pyup.io/repos/github/stephenhky/MoguNumerics/)
+[![Python 3](https://pyup.io/repos/github/stephenhky/MoguNumerics/python-3-shield.svg)](https://pyup.io/repos/github/stephenhky/MoguNumerics/)
+
 
 This is a numerical packages collecting various routines of numerical algorithms. This is not only for convenience, but also demonstration.
 
