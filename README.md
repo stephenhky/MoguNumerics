@@ -29,12 +29,14 @@ After ensuring they have been installed, type the following to install `mogu`:
 * Topological data analysis; (implementation moved to [`moguTDA`](https://github.com/stephenhky/MoguTDA) since release 0.1.13)
 * Gini coefficients;
 * Multivariate Gaussian distribution sampling;
-* probability crosswalk;
-* PySpark dataframe to `dict`;
-* Tensor decomposition using Jennrich algorithm and alternating lease square (ALS) method.
+* Probability crosswalk;
+* Tensor decomposition using Jennrich algorithm and alternating lease square (ALS) method;
+* Discrete Fourier transform (DFT);
+* Fast Fourier transform (FFT).
 
 # News
 
+* 06/21/2021: `mogu` 0.7.0 released.
 * 01/16/2020: `mogu` 0.6.0 released.
 * 09/07/2019: `mogu` 0.5.1 released.
 * 08/26/2019: `mogu` 0.5.0 released.
