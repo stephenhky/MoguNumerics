@@ -3,6 +3,7 @@ import numpy as np
 import numba as nb
 
 
+@nb.njit(nb.complex64[:](nb.complex64[:]))
 def slowDFT(t):
     N = t.shape[0]
     omega = np.zeros(N, dtype=np.complex_)
@@ -11,6 +12,7 @@ def slowDFT(t):
     return omega
 
 
+@nb.njit(nb.complex64[:](nb.complex64[:]))
 def slowInvDFT(omega):
     N = omega.shape[0]
     t = np.zeros(N, dtype=np.complex_)
