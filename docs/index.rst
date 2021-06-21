@@ -25,8 +25,10 @@ Functionalities
 * Topological data analysis; (implementation moved to [`moguTDA`](https://github.com/stephenhky/MoguTDA) since release 0.1.13)
 * Gini coefficients;
 * Multivariate Gaussian distribution sampling;
-* probability crosswalk;
-* PySpark dataframe to `dict`.
+* Probability crosswalk;
+* Tensor decomposition using Jennrich algorithm and alternating lease square (ALS) method;
+* Discrete Fourier transform (DFT);
+* Fast Fourier transform (FFT).
 
 Github: Github_
 
