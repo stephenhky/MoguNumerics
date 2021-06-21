@@ -1,7 +1,10 @@
 # Mogu: a Collection of Simple Numerical Routines
 
-[![Build Status](https://travis-ci.org/stephenhky/MoguNumerics.svg?branch=master)](https://travis-ci.org/stephenhky/MoguNumerics)
+[![CircleCI](https://circleci.com/gh/stephenhky/MoguNumerics.svg?style=svg)](https://circleci.com/gh/stephenhky/MoguNumerics.svg)
 [![GitHub release](https://img.shields.io/github/release/stephenhky/MoguNumerics.svg?maxAge=3600)](https://github.com/stephenhky/MoguNumerics/releases)
+[![Updates](https://pyup.io/repos/github/stephenhky/MoguNumerics/shield.svg)](https://pyup.io/repos/github/stephenhky/MoguNumerics/)
+[![Python 3](https://pyup.io/repos/github/stephenhky/MoguNumerics/python-3-shield.svg)](https://pyup.io/repos/github/stephenhky/MoguNumerics/)
+
 
 This is a numerical packages collecting various routines of numerical algorithms. This is not only for convenience, but also demonstration.
 
@@ -29,12 +32,14 @@ After ensuring they have been installed, type the following to install `mogu`:
 * Topological data analysis; (implementation moved to [`moguTDA`](https://github.com/stephenhky/MoguTDA) since release 0.1.13)
 * Gini coefficients;
 * Multivariate Gaussian distribution sampling;
-* probability crosswalk;
-* PySpark dataframe to `dict`;
-* Tensor decomposition using Jennrich algorithm and alternating lease square (ALS) method.
+* Probability crosswalk;
+* Tensor decomposition using Jennrich algorithm and alternating lease square (ALS) method;
+* Discrete Fourier transform (DFT);
+* Fast Fourier transform (FFT).
 
 # News
 
+* 06/21/2021: `mogu` 0.7.0 released.
 * 01/16/2020: `mogu` 0.6.0 released.
 * 09/07/2019: `mogu` 0.5.1 released.
 * 08/26/2019: `mogu` 0.5.0 released.

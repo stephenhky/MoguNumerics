@@ -1,0 +1,54 @@
+version: 2
+
+shared: &shared
+  working_directory: ~/mogu
+
+  steps:
+    - checkout
+
+    - run:
+        name: Apt Install
+        command: |
+          sudo apt-get update
+          sudo apt-get install -y libc6
+          sudo apt-get install -y g++
+          sudo apt-get install -y gfortran
+
+    - run:
+        name: Installing Packages
+        command: |
+          pip install --upgrade --user pip
+          pip install --upgrade --user numpy
+          pip install --upgrade --user Cython
+          pip install --upgrade --user .
+
+    - run:
+        name: Run Unit Tests
+        command: |
+          python setup.py test
+
+
+
+jobs:
+  py37:
+    <<: *shared
+    docker:
+      - image: circleci/python:3.7
+
+  py38:
+    <<: *shared
+    docker:
+      - image: circleci/python:3.8
+
+  py39:
+    <<: *shared
+    docker:
+      - image: circleci/python:3.9
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - py37
+      - py38
+      - py39
