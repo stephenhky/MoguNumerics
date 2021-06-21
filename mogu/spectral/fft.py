@@ -1,9 +1,7 @@
 
 import numpy as np
-import numba as nb
 
 
-@nb.njit(nb.complex64[:](nb.complex64[:]))
 def FFT(f):
     nbdata = f.shape[0]
     assert np.log(nbdata) / np.log(2) % 1 == 0.0
@@ -23,7 +21,6 @@ def FFT(f):
     return g
 
 
-@nb.njit(nb.complex64[:](nb.complex64[:]))
 def invFFTrecursive(f):
     nbdata = f.shape[0]
     assert np.log(nbdata) / np.log(2) % 1 == 0.0
