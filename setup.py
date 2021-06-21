@@ -21,8 +21,12 @@ def readme():
         return f.read()
 
 
+def install_requirements():
+    return [package_string.strip() for package_string in open('requirements.txt', 'r')]
+
+
 setup(name='mogu',
-      version="0.6.0",
+      version="0.7.0a1",
       description="Collection of Simple Numerical Routines",
       long_description="Collection of simple numerical routines, independent of each other",
       classifiers=[
@@ -53,15 +57,11 @@ setup(name='mogu',
                 'mogu.probxwalk',
                 'mogu.random',
                 'mogu.econ',
-                'mogu.spark',
                 'mogu.tensor'],
       package_data={'mogu': ['finance/binomial/*.f90', 'finance/binomial/*.pyf', 'dynprog/*.pyx'],
                     'test': ['*.csv']},
       setup_requires=['numpy', 'Cython'],
-      install_requires=[
-          'Cython', 'numpy', 'scipy', 'numba', 'networkx>=2.0', 'graphflow>=0.1.1',
-          'mogutda>=0.1.1', 'pyspark>=2.0.0', 'tfnumpy>=0.1.1'
-      ],
+      install_requires=install_requirements(),
       tests_require=[
           'unittest2', 'pandas',
       ],
