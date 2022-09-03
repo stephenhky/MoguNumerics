@@ -13,6 +13,7 @@ shared: &shared
           sudo apt-get install -y libc6
           sudo apt-get install -y g++
           sudo apt-get install -y gfortran
+          sudo apt-get install python3-dev
 
     - run:
         name: Installing Packages
