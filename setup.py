@@ -26,7 +26,7 @@ def install_requirements():
 
 
 setup(name='mogu',
-      version="0.7.0",
+      version="0.8.0a2",
       description="Collection of Simple Numerical Routines",
       long_description="Collection of simple numerical routines, independent of each other",
       classifiers=[
@@ -35,6 +35,7 @@ setup(name='mogu',
           "Programming Language :: Python :: 3.7",
           "Programming Language :: Python :: 3.8",
           "Programming Language :: Python :: 3.9",
+          "Programming Language :: Python :: 3.10",
           "Programming Language :: Fortran",
           "Programming Language :: Cython",
           "Programming Language :: C",
