@@ -26,7 +26,7 @@ def install_requirements():
 
 
 setup(name='mogu',
-      version="0.8.0",
+      version="0.8.1a1",
       description="Collection of Simple Numerical Routines",
       long_description="Collection of simple numerical routines, independent of each other",
       classifiers=[
