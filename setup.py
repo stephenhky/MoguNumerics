@@ -10,10 +10,17 @@ from numpy.distutils.core import setup, Extension
 
 try:
     from Cython.Build import cythonize
-    dynprog_ext_modules = cythonize(['mogu/dynprog/dldist.pyx', 'mogu/dynprog/lcp.pyx'])
+    dynprog_ext_modules = cythonize([
+        'mogu/dynprog/dldist.pyx',
+        'mogu/dynprog/lcp.pyx',
+        'mogu/spectral/lanczos_tridiagmat.pyx'
+    ])
 except ImportError:
-    dynprog_ext_modules = [Extension('mogu.dynprog.dldist', ['mogu/dynprog/dldist.c']),
-                           Extension('mogu.dynprog.lcp', ['mogu/dynprog/lcp.c'])]
+    dynprog_ext_modules = [
+        Extension('mogu.dynprog.dldist', ['mogu/dynprog/dldist.c']),
+        Extension('mogu.dynprog.lcp', ['mogu/dynprog/lcp.c']),
+        Extension('mogu.spectral.lanczos_tridiagmat', ['mogu/spectral/lanczos_tridiagmat.c'])
+    ]
 
 
 def readme():

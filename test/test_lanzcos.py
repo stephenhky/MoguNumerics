@@ -65,14 +65,14 @@ class test_lanzcos(unittest.TestCase):
     def test_four_python(self):
         self.fourbyfour_testfunc_backend('python')
 
-    def test_four_numba(self):
-        self.fourbyfour_testfunc_backend('numba')
+    def test_four_cython(self):
+        self.fourbyfour_testfunc_backend('cython')
 
     def test_paulix_python(self):
         self.fourbyfour_testfunc_backend('python')
 
-    def test_paulix_numba(self):
-        self.paulix_test_backend('numba')
+    def test_paulix_cython(self):
+        self.paulix_test_backend('cython')
 
 
 if __name__ == '__main__':
