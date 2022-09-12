@@ -7,7 +7,7 @@ from mogu.spectral import lanzcos
 
 
 class test_lanzcos(unittest.TestCase):
-    def test_four(self):
+    def fourbyfour_testfunc_backend(self, backend):
         tol = 1e-8
         A = np.array(
             [
@@ -18,7 +18,7 @@ class test_lanzcos(unittest.TestCase):
             ]
         )
         eigval1, eigvec1 = np.linalg.eig(A)
-        eigval2, eigvec2 = lanzcos(A, A.shape[0])
+        eigval2, eigvec2 = lanzcos(A, A.shape[0], backend=backend)
 
         assert len(eigval2) == A.shape[0] + 1
 
@@ -35,7 +35,7 @@ class test_lanzcos(unittest.TestCase):
             assert np.abs(np.linalg.norm(eigvec2[:, j]) - 1.) < tol
             assert np.all(np.abs(A @ eigvec2[:, j] / eigval2[j] - eigvec2[:, j]) < tol)
 
-    def test_paulix(self):
+    def paulix_test_backend(self, backend):
         tol = 1e-8
         A = np.array(
             [
@@ -44,7 +44,7 @@ class test_lanzcos(unittest.TestCase):
             ]
         )
         eigval1, eigvec1 = np.linalg.eig(A)
-        eigval2, eigvec2 = lanzcos(A, A.shape[0])
+        eigval2, eigvec2 = lanzcos(A, A.shape[0], backend=backend)
 
         assert len(eigval2) == A.shape[0] + 1
 
@@ -61,6 +61,18 @@ class test_lanzcos(unittest.TestCase):
             assert np.abs(np.linalg.norm(eigvec2[:, j]) - 1.) < tol
             assert np.all(np.abs(A @ eigvec2[:, j] / eigval2[j] - eigvec2[:, j]) < tol)
             assert abs(abs(eigvec2[0, j]) - np.sqrt(0.5)) < tol
+
+    def test_four_python(self):
+        self.fourbyfour_testfunc_backend('python')
+
+    def test_four_numba(self):
+        self.fourbyfour_testfunc_backend('numba')
+
+    def test_paulix_python(self):
+        self.fourbyfour_testfunc_backend('python')
+
+    def test_paulix_numba(self):
+        self.paulix_test_backend('numba')
 
 
 if __name__ == '__main__':
