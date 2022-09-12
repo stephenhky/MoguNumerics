@@ -33,7 +33,7 @@ def lanzcos_python(M, k):
     return eigvals, v @ eigvecs
 
 
-@nb.njit(nb.types.tuple((nb.float64[:], nb.float64[:], nb.float64[:]))(nb.float64[:, :], nb.int64))
+@nb.njit(nb.types.Tuple((nb.float64[:], nb.float64[:], nb.float64[:]))(nb.float64[:, :], nb.int64))
 def prepare_tridiag_vec(M, k):
     d = M.shape[1]
 
