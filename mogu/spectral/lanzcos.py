@@ -4,8 +4,10 @@
 import numpy as np
 from scipy.linalg import eigh_tridiagonal
 
+from .lanczos_tridiagmat import prepare_tridiag_vec
 
-def lanzcos(M, k):
+
+def lanzcos_python(M, k):
     assert M.shape[0] == M.shape[1]
     assert (M == M.T).all()
     d = M.shape[1]
@@ -30,3 +32,18 @@ def lanzcos(M, k):
 
     eigvals, eigvecs = eigh_tridiagonal(a, b)
     return eigvals, v @ eigvecs
+
+
+def lanzcos(M, k, backend='python'):
+    if backend == 'python':
+        return lanzcos_python(M, k)
+    elif backend == 'cython':
+        assert M.shape[0] == M.shape[1]
+        assert (M == M.T).all()
+        assert k <= M.shape[0]
+
+        a, b, v = prepare_tridiag_vec(M, k)
+        eigvals, eigvecs = eigh_tridiagonal(a, b)
+        return eigvals, v @ eigvecs
+    else:
+        raise ValueError('Unsupported backend: %s' % backend)

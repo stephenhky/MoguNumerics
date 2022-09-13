@@ -39,6 +39,7 @@ After ensuring they have been installed, type the following to install `mogu`:
 
 # News
 
+* 09/12/2022: `mogu` 0.8.1 released.
 * 09/03/2022: `mogu` 0.8.0 released.
 * 06/21/2021: `mogu` 0.7.0 released.
 * 01/16/2020: `mogu` 0.6.0 released.
