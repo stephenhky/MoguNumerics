@@ -1,8 +1,11 @@
 include README.md
 include requirements.txt
 include mogu/dynprog/dldist.pyx
+include mogu/dynprog/dldist.c
 include mogu/dynprog/lcp.pyx
+include mogu/dynprog/lcp.c
 include mogu/finance/binomial/binomialtree.f90
 include mogu/finance/binomial/binomialtree.pyf
 include mogu/spectral/lanczos_tridiagmat.pyx
+include mogu/spectral/lanczos_tridiagmat.c
 include test/socialnetworkranks.csv
